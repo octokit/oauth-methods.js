@@ -9,7 +9,7 @@ import {
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
 } from "./types";
-import { requestToOAuthBaseUrl } from "./utils";
+import { oauthRequest } from "./utils";
 
 type OAuthAppOptions = {
   clientType: "oauth-app";
@@ -73,19 +73,17 @@ export async function exchangeWebFlowCode(
     /* istanbul ignore next: we always pass a custom request in tests */
     defaultRequest;
 
-  const parameters = {
-    baseUrl: requestToOAuthBaseUrl(request),
-    headers: {
-      accept: "application/json",
-    },
-    client_id: options.clientId,
-    client_secret: options.clientSecret,
-    code: options.code,
-    redirect_uri: options.redirectUrl,
-    state: options.state,
-  };
-
-  const response = await request("POST /login/oauth/access_token", parameters);
+  const response = await oauthRequest(
+    request,
+    "POST /login/oauth/access_token",
+    {
+      client_id: options.clientId,
+      client_secret: options.clientSecret,
+      code: options.code,
+      redirect_uri: options.redirectUrl,
+      state: options.state,
+    }
+  );
 
   const authentication: Record<string, unknown> = {
     clientType: options.clientType,

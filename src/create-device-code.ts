@@ -1,7 +1,7 @@
 import { request as defaultRequest } from "@octokit/request";
 import { OctokitResponse, RequestInterface } from "@octokit/types";
 
-import { requestToOAuthBaseUrl } from "./utils";
+import { oauthRequest } from "./utils";
 
 type OAuthAppOptions = {
   clientType: "oauth-app";
@@ -32,10 +32,6 @@ export async function createDeviceCode(
     defaultRequest;
 
   const parameters: Record<string, unknown> = {
-    baseUrl: requestToOAuthBaseUrl(request),
-    headers: {
-      accept: "application/json",
-    },
     client_id: options.clientId,
   };
 
@@ -43,5 +39,5 @@ export async function createDeviceCode(
     parameters.scope = options.scopes.join(" ");
   }
 
-  return request("POST /login/device/code", parameters);
+  return oauthRequest(request, "POST /login/device/code", parameters);
 }
