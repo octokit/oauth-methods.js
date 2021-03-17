@@ -19,7 +19,11 @@
   ],
   "author": "Gregor Martynus (https://dev.to/gr2m)",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "@octokit/oauth-authorization-url": "^4.3.1",
+    "@octokit/request": "^5.4.14",
+    "@octokit/types": "^6.12.2"
+  },
   "devDependencies": {
     "@octokit/tsconfig": "^1.0.2",
     "@pika/pack": "^0.5.0",
