@@ -11,8 +11,6 @@ export type GitHubAppAuthentication = {
   clientId: string;
   clientSecret: string;
   token: string;
-  /** GitHub apps do not support scopes */
-  scopes: never;
 };
 
 export type GitHubAppAuthenticationWithExpiration = {
@@ -23,8 +21,6 @@ export type GitHubAppAuthenticationWithExpiration = {
   refreshToken: string;
   expiresAt: string;
   refreshTokenExpiresAt: string;
-  /** GitHub apps do not support scopes */
-  scopes: never;
 };
 
 export type OAuthAppCreateTokenResponseData = {
