@@ -1,7 +1,7 @@
 import { request } from "@octokit/request";
 import { getWebFlowAuthorizationUrl } from "../src";
 
-describe("getWebFlowAuthorizationUrl", () => {
+describe("getWebFlowAuthorizationUrl()", () => {
   it("README example", () => {
     const { url } = getWebFlowAuthorizationUrl({
       clientType: "oauth-app",
