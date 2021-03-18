@@ -44,6 +44,8 @@ Browsers
 
 `@octokit/oauth-methods` is not meant for browser usage.
 
+Some of the methods will work, but others do not have CORS headers enabled and will fail (`exchangeWebFlowCode()`, `createDeviceCode()`, `exchangeDeviceCode()`, `refreshToken()`). Also the Client Secret should not be exposed to clients as it can be used for a [Person-in-the-middle attack](https://en.wikipedia.org/wiki/Person-in-the-middle_attack).
+
 </td></tr>
 <tr><th>
 
@@ -1558,6 +1560,16 @@ Note that the `clientSecret` may not be set when using [`exchangeDeviceCode()`](
     </tr>
   </tbody>
 </table>
+
+## Types
+
+```ts
+import {
+  OAuthAppAuthentication,
+  GitHubAppAuthentication,
+  GitHubAppAuthenticationWithExpiration,
+} from "@octokit/oauth-methods";
+```
 
 ## Contributing
 

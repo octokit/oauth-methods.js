@@ -9,3 +9,8 @@ export { scopeToken } from "./scope-token";
 export { resetToken } from "./reset-token";
 export { deleteToken } from "./delete-token";
 export { deleteAuthorization } from "./delete-authorization";
+export {
+  OAuthAppAuthentication,
+  GitHubAppAuthentication,
+  GitHubAppAuthenticationWithExpiration,
+} from "./types";
