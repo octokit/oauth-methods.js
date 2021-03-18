@@ -98,5 +98,10 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "renovate": {
+    "extends": [
+      "github>octokit/.github"
+    ]
   }
 }
