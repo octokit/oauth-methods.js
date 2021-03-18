@@ -161,7 +161,6 @@ export async function exchangeDeviceCode(
         ));
     }
 
-    delete response.data.scope;
     delete authentication.scopes;
   }
 
