@@ -33,13 +33,11 @@ export async function deleteToken(
     defaultRequest;
 
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
-  const response = await request("DELETE /applications/{client_id}/token", {
+  return request("DELETE /applications/{client_id}/token", {
     headers: {
       authorization: `basic ${auth}`,
     },
     client_id: options.clientId,
     access_token: options.token,
   });
-
-  return response;
 }
