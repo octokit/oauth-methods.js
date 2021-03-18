@@ -165,6 +165,7 @@ describe("exchangeWebFlowCode()", () => {
     expect(data).toMatchInlineSnapshot(`
       Object {
         "access_token": "secret123",
+        "scope": "",
         "token_type": "bearer",
       }
     `);
@@ -232,6 +233,7 @@ describe("exchangeWebFlowCode()", () => {
         "expires_in": 28800,
         "refresh_token": "r1.token123",
         "refresh_token_expires_in": 15897600,
+        "scope": "",
         "token_type": "bearer",
       }
     `);

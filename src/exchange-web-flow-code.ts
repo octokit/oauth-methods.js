@@ -108,7 +108,6 @@ export async function exchangeWebFlowCode(
         ));
     }
 
-    delete response.data.scope;
     delete authentication.scopes;
   }
 

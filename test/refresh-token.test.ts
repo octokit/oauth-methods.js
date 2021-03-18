@@ -55,6 +55,7 @@ describe("refreshToken()", () => {
         "expires_in": 28800,
         "refresh_token": "r1.token456",
         "refresh_token_expires_in": 15897600,
+        "scope": "",
         "token_type": "bearer",
       }
     `);

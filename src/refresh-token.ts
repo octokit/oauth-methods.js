@@ -52,8 +52,6 @@ export async function refreshToken(
     ),
   };
 
-  delete response.data.scope;
-
   return { ...response, authentication };
 }
 
