@@ -2,7 +2,7 @@ import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
 import { exchangeDeviceCode } from "../src";
 
-describe("exchangeDeviceCode", () => {
+describe("exchangeDeviceCode()", () => {
   it("README example", async () => {
     const mock = fetchMock.sandbox().postOnce(
       "https://github.com/login/oauth/access_token",

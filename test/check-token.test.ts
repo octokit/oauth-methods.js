@@ -2,7 +2,7 @@ import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
 import { checkToken } from "../src";
 
-describe("checkToken", () => {
+describe("checkToken()", () => {
   it("README example", async () => {
     const mock = fetchMock.sandbox().postOnce(
       "https://api.github.com/applications/1234567890abcdef1234/token",
