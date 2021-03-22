@@ -83,7 +83,7 @@ export async function exchangeWebFlowCode(
     clientId: options.clientId,
     clientSecret: options.clientSecret,
     token: response.data.access_token,
-    scopes: response.data.scope.split(/,\s*/).filter(Boolean),
+    scopes: response.data.scope.split(/\s+/).filter(Boolean),
   };
 
   if (options.clientType === "github-app") {

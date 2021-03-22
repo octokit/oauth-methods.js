@@ -56,6 +56,63 @@ describe("exchangeDeviceCode()", () => {
     `);
   });
 
+  it("with scopes", async () => {
+    const mock = fetchMock.sandbox().postOnce(
+      "https://github.com/login/oauth/access_token",
+      {
+        access_token: "secret123",
+        scope: "repo gist",
+        token_type: "bearer",
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "user-agent": "test",
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: {
+          client_id: "1234567890abcdef1234",
+          device_code: "code123",
+          grant_type: "urn:ietf:params:oauth:grant-type:device_code",
+        },
+      }
+    );
+
+    const { data, authentication } = await exchangeDeviceCode({
+      clientType: "oauth-app",
+      clientId: "1234567890abcdef1234",
+      code: "code123",
+      scopes: ["repo", "gist"],
+      request: request.defaults({
+        headers: {
+          "user-agent": "test",
+        },
+        request: {
+          fetch: mock,
+        },
+      }),
+    });
+
+    expect(data).toMatchInlineSnapshot(`
+      Object {
+        "access_token": "secret123",
+        "scope": "repo gist",
+        "token_type": "bearer",
+      }
+    `);
+    expect(authentication).toMatchInlineSnapshot(`
+      Object {
+        "clientId": "1234567890abcdef1234",
+        "clientType": "oauth-app",
+        "scopes": Array [
+          "repo",
+          "gist",
+        ],
+        "token": "secret123",
+      }
+    `);
+  });
+
   it("authorization_pending error", async () => {
     const mock = fetchMock.sandbox().postOnce(
       "https://github.com/login/oauth/access_token",
