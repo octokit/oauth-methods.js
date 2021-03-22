@@ -60,6 +60,66 @@ describe("exchangeWebFlowCode()", () => {
     `);
   });
 
+  it("with scopes", async () => {
+    const mock = fetchMock.sandbox().postOnce(
+      "https://github.com/login/oauth/access_token",
+      {
+        access_token: "secret123",
+        scope: "repo gist",
+        token_type: "bearer",
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "user-agent": "test",
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: {
+          client_id: "1234567890abcdef1234",
+          client_secret: "1234567890abcdef12347890abcdef12345678",
+          code: "code123",
+          state: "state123",
+        },
+      }
+    );
+
+    const { data, authentication } = await exchangeWebFlowCode({
+      clientType: "oauth-app",
+      clientId: "1234567890abcdef1234",
+      clientSecret: "1234567890abcdef12347890abcdef12345678",
+      code: "code123",
+      state: "state123",
+      request: request.defaults({
+        headers: {
+          "user-agent": "test",
+        },
+        request: {
+          fetch: mock,
+        },
+      }),
+    });
+
+    expect(data).toMatchInlineSnapshot(`
+      Object {
+        "access_token": "secret123",
+        "scope": "repo gist",
+        "token_type": "bearer",
+      }
+    `);
+    expect(authentication).toMatchInlineSnapshot(`
+      Object {
+        "clientId": "1234567890abcdef1234",
+        "clientSecret": "1234567890abcdef12347890abcdef12345678",
+        "clientType": "oauth-app",
+        "scopes": Array [
+          "repo",
+          "gist",
+        ],
+        "token": "secret123",
+      }
+    `);
+  });
+
   it("All options for OAuth Apps", async () => {
     const mock = fetchMock.sandbox().postOnce(
       "https://ghe.acme-inc.com/login/oauth/access_token",

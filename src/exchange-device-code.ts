@@ -18,6 +18,7 @@ export type ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret = {
   redirectUrl?: string;
   state?: string;
   request?: RequestInterface;
+  scopes?: string[];
 };
 export type ExchangeDeviceCodeOAuthAppOptions = ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret & {
   clientSecret: string;
@@ -128,7 +129,7 @@ export async function exchangeDeviceCode(
     clientType: options.clientType,
     clientId: options.clientId,
     token: response.data.access_token,
-    scopes: response.data.scope.split(/,\s*/).filter(Boolean),
+    scopes: response.data.scope.split(/\s+/).filter(Boolean),
   };
 
   if ("clientSecret" in options) {
