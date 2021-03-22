@@ -3,29 +3,29 @@ import { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import { oauthRequest } from "./utils";
 
-type OAuthAppOptions = {
+export type CreateDeviceCodeOAuthAppOptions = {
   clientType: "oauth-app";
   clientId: string;
   scopes?: string[];
   request?: RequestInterface;
 };
-type GitHubAppOptions = {
+export type CreateDeviceCodeGitHubAppOptions = {
   clientType: "github-app";
   clientId: string;
   request?: RequestInterface;
 };
 
-type DeviceTokenResponse = {
+export type CreateDeviceCodeDeviceTokenResponse = OctokitResponse<{
   device_code: string;
   user_code: string;
   verification_uri: string;
   expires_in: number;
   interval: number;
-};
+}>;
 
 export async function createDeviceCode(
-  options: OAuthAppOptions | GitHubAppOptions
-): Promise<OctokitResponse<DeviceTokenResponse>> {
+  options: CreateDeviceCodeOAuthAppOptions | CreateDeviceCodeGitHubAppOptions
+): Promise<CreateDeviceCodeDeviceTokenResponse> {
   const request =
     options.request ||
     /* istanbul ignore next: we always pass a custom request in tests */

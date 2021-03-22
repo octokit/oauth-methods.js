@@ -11,7 +11,7 @@ import {
 } from "./types";
 import { oauthRequest } from "./utils";
 
-type OAuthAppOptionsWithoutClientSecret = {
+export type ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret = {
   clientType: "oauth-app";
   clientId: string;
   code: string;
@@ -19,10 +19,10 @@ type OAuthAppOptionsWithoutClientSecret = {
   state?: string;
   request?: RequestInterface;
 };
-type OAuthAppOptions = OAuthAppOptionsWithoutClientSecret & {
+export type ExchangeDeviceCodeOAuthAppOptions = ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret & {
   clientSecret: string;
 };
-type GitHubAppOptionsWithoutClientSecret = {
+export type ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret = {
   clientType: "github-app";
   clientId: string;
   code: string;
@@ -31,7 +31,7 @@ type GitHubAppOptionsWithoutClientSecret = {
   request?: RequestInterface;
 };
 
-type GitHubAppOptions = GitHubAppOptionsWithoutClientSecret & {
+export type ExchangeDeviceCodeGitHubAppOptions = ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret & {
   clientSecret: string;
 };
 
@@ -48,78 +48,67 @@ type GitHubAppAuthenticationWithExpirationWithoutClientSecret = Omit<
   "clientSecret"
 >;
 
+export type ExchangeDeviceCodeOAuthAppResponse = OctokitResponse<OAuthAppCreateTokenResponseData> & {
+  authentication: OAuthAppAuthentication;
+};
+
+export type ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret = OctokitResponse<OAuthAppCreateTokenResponseData> & {
+  authentication: OAuthAppAuthenticationWithoutClientSecret;
+};
+
+export type ExchangeDeviceCodeGitHubAppResponse = OctokitResponse<
+  | GitHubAppCreateTokenResponseData
+  | GitHubAppCreateTokenWithExpirationResponseData
+> & {
+  authentication:
+    | GitHubAppAuthentication
+    | GitHubAppAuthenticationWithExpiration;
+};
+
+export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret = OctokitResponse<
+  | GitHubAppCreateTokenResponseData
+  | GitHubAppCreateTokenWithExpirationResponseData
+> & {
+  authentication:
+    | GitHubAppAuthenticationWithoutClientSecret
+    | GitHubAppAuthenticationWithExpirationWithoutClientSecret;
+};
+
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
  */
 export async function exchangeDeviceCode(
-  options: OAuthAppOptions
-): Promise<
-  OctokitResponse<OAuthAppCreateTokenResponseData> & {
-    authentication: OAuthAppAuthentication;
-  }
->;
+  options: ExchangeDeviceCodeOAuthAppOptions
+): Promise<ExchangeDeviceCodeOAuthAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps without clientSecret
  */
 export async function exchangeDeviceCode(
-  options: OAuthAppOptionsWithoutClientSecret
-): Promise<
-  OctokitResponse<OAuthAppCreateTokenResponseData> & {
-    authentication: OAuthAppAuthenticationWithoutClientSecret;
-  }
->;
+  options: ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret
+): Promise<ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
-  options: GitHubAppOptions
-): Promise<
-  OctokitResponse<
-    | GitHubAppCreateTokenResponseData
-    | GitHubAppCreateTokenWithExpirationResponseData
-  > & {
-    authentication:
-      | GitHubAppAuthentication
-      | GitHubAppAuthenticationWithExpiration;
-  }
->;
+  options: ExchangeDeviceCodeGitHubAppOptions
+): Promise<ExchangeDeviceCodeGitHubAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps without using `clientSecret`. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
-  options: GitHubAppOptionsWithoutClientSecret
-): Promise<
-  OctokitResponse<
-    | GitHubAppCreateTokenResponseData
-    | GitHubAppCreateTokenWithExpirationResponseData
-  > & {
-    authentication:
-      | GitHubAppAuthenticationWithoutClientSecret
-      | GitHubAppAuthenticationWithExpirationWithoutClientSecret;
-  }
->;
+  options: ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret
+): Promise<ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret>;
 
 export async function exchangeDeviceCode(
   options:
-    | OAuthAppOptions
-    | GitHubAppOptions
-    | OAuthAppOptionsWithoutClientSecret
-    | GitHubAppOptionsWithoutClientSecret
-): Promise<
-  OctokitResponse<
-    | GitHubAppCreateTokenWithExpirationResponseData
-    | GitHubAppCreateTokenResponseData
-    | GitHubAppCreateTokenWithExpirationResponseData
-    | OAuthAppAuthenticationWithoutClientSecret
-    | GitHubAppAuthenticationWithoutClientSecret
-    | GitHubAppAuthenticationWithExpirationWithoutClientSecret
-  > & {
-    authentication: any;
-  }
-> {
+    | ExchangeDeviceCodeOAuthAppOptions
+    | ExchangeDeviceCodeGitHubAppOptions
+    | ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret
+    | ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret
+): Promise<any> {
   const request =
     options.request ||
     /* istanbul ignore next: we always pass a custom request in tests */

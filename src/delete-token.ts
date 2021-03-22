@@ -2,14 +2,14 @@ import { request as defaultRequest } from "@octokit/request";
 import { RequestInterface, Endpoints } from "@octokit/types";
 import btoa from "btoa-lite";
 
-type OAuthAppOptions = {
+export type DeleteTokenOAuthAppOptions = {
   clientType: "oauth-app";
   clientId: string;
   clientSecret: string;
   token: string;
   request?: RequestInterface;
 };
-type GitHubAppOptions = {
+export type DeleteTokenGitHubAppOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -17,15 +17,17 @@ type GitHubAppOptions = {
   request?: RequestInterface;
 };
 
-export async function deleteToken(
-  options: OAuthAppOptions
-): Promise<Endpoints["DELETE /applications/{client_id}/token"]["response"]>;
-export async function deleteToken(
-  options: GitHubAppOptions
-): Promise<Endpoints["DELETE /applications/{client_id}/token"]["response"]>;
+export type DeleteTokenResponse = Endpoints["DELETE /applications/{client_id}/token"]["response"];
 
 export async function deleteToken(
-  options: OAuthAppOptions | GitHubAppOptions
+  options: DeleteTokenOAuthAppOptions
+): Promise<DeleteTokenResponse>;
+export async function deleteToken(
+  options: DeleteTokenGitHubAppOptions
+): Promise<DeleteTokenResponse>;
+
+export async function deleteToken(
+  options: DeleteTokenOAuthAppOptions | DeleteTokenGitHubAppOptions
 ): Promise<any> {
   const request =
     options.request ||

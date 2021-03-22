@@ -11,7 +11,7 @@ import {
 } from "./types";
 import { oauthRequest } from "./utils";
 
-type OAuthAppOptions = {
+export type ExchangeWebFlowCodeOAuthAppOptions = {
   clientType: "oauth-app";
   clientId: string;
   clientSecret: string;
@@ -20,7 +20,7 @@ type OAuthAppOptions = {
   state?: string;
   request?: RequestInterface;
 };
-type GitHubAppOptions = {
+export type ExchangeWebFlowCodeGitHubAppOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -30,44 +30,37 @@ type GitHubAppOptions = {
   request?: RequestInterface;
 };
 
+export type ExchangeWebFlowCodeOAuthAppResponse = OctokitResponse<OAuthAppCreateTokenResponseData> & {
+  authentication: OAuthAppAuthentication;
+};
+export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
+  | GitHubAppCreateTokenResponseData
+  | GitHubAppCreateTokenWithExpirationResponseData
+> & {
+  authentication:
+    | GitHubAppAuthentication
+    | GitHubAppAuthenticationWithExpiration;
+};
+
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
  */
 export async function exchangeWebFlowCode(
-  options: OAuthAppOptions
-): Promise<
-  OctokitResponse<OAuthAppCreateTokenResponseData> & {
-    authentication: OAuthAppAuthentication;
-  }
->;
+  options: ExchangeWebFlowCodeOAuthAppOptions
+): Promise<ExchangeWebFlowCodeOAuthAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. Note that `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeWebFlowCode(
-  options: GitHubAppOptions
-): Promise<
-  OctokitResponse<
-    | GitHubAppCreateTokenResponseData
-    | GitHubAppCreateTokenWithExpirationResponseData
-  > & {
-    authentication:
-      | GitHubAppAuthentication
-      | GitHubAppAuthenticationWithExpiration;
-  }
->;
+  options: ExchangeWebFlowCodeGitHubAppOptions
+): Promise<ExchangeWebFlowCodeGitHubAppResponse>;
 
 export async function exchangeWebFlowCode(
-  options: OAuthAppOptions | GitHubAppOptions
-): Promise<
-  OctokitResponse<
-    | GitHubAppCreateTokenWithExpirationResponseData
-    | GitHubAppCreateTokenResponseData
-    | GitHubAppCreateTokenWithExpirationResponseData
-  > & {
-    authentication: any;
-  }
-> {
+  options:
+    | ExchangeWebFlowCodeOAuthAppOptions
+    | ExchangeWebFlowCodeGitHubAppOptions
+): Promise<any> {
   const request =
     options.request ||
     /* istanbul ignore next: we always pass a custom request in tests */
