@@ -7,7 +7,7 @@ import {
 } from "./types";
 import { oauthRequest } from "./utils";
 
-type Options = {
+export type RefreshTokenOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -15,13 +15,13 @@ type Options = {
   request?: RequestInterface;
 };
 
+export type RefreshTokenResponse = OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
+  authentication: GitHubAppAuthenticationWithExpiration;
+};
+
 export async function refreshToken(
-  options: Options
-): Promise<
-  OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
-    authentication: GitHubAppAuthenticationWithExpiration;
-  }
-> {
+  options: RefreshTokenOptions
+): Promise<RefreshTokenResponse> {
   const request =
     options.request ||
     /* istanbul ignore next: we always pass a custom request in tests */

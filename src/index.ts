@@ -1,14 +1,14 @@
 export { VERSION } from "./version";
-export { getWebFlowAuthorizationUrl } from "./get-web-flow-authorization-url";
-export { exchangeWebFlowCode } from "./exchange-web-flow-code";
-export { createDeviceCode } from "./create-device-code";
-export { exchangeDeviceCode } from "./exchange-device-code";
-export { checkToken } from "./check-token";
-export { refreshToken } from "./refresh-token";
-export { scopeToken } from "./scope-token";
-export { resetToken } from "./reset-token";
-export { deleteToken } from "./delete-token";
-export { deleteAuthorization } from "./delete-authorization";
+export * from "./get-web-flow-authorization-url";
+export * from "./exchange-web-flow-code";
+export * from "./create-device-code";
+export * from "./exchange-device-code";
+export * from "./check-token";
+export * from "./refresh-token";
+export * from "./scope-token";
+export * from "./reset-token";
+export * from "./delete-token";
+export * from "./delete-authorization";
 export {
   OAuthAppAuthentication,
   GitHubAppAuthentication,

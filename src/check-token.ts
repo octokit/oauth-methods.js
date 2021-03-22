@@ -4,14 +4,14 @@ import btoa from "btoa-lite";
 
 import { OAuthAppAuthentication, GitHubAppAuthentication } from "./types";
 
-type OAuthAppOptions = {
+export type CheckTokenOAuthAppOptions = {
   clientType: "oauth-app";
   clientId: string;
   clientSecret: string;
   token: string;
   request?: RequestInterface;
 };
-type GitHubAppOptions = {
+export type CheckTokenGitHubAppOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -19,22 +19,22 @@ type GitHubAppOptions = {
   request?: RequestInterface;
 };
 
-type OAuthAppResult = Endpoints["POST /applications/{client_id}/token"]["response"] & {
+export type CheckTokenOAuthAppResponse = Endpoints["POST /applications/{client_id}/token"]["response"] & {
   authentication: OAuthAppAuthentication;
 };
-type GitHubAppResult = Endpoints["POST /applications/{client_id}/token"]["response"] & {
+export type CheckTokenGitHubAppResponse = Endpoints["POST /applications/{client_id}/token"]["response"] & {
   authentication: GitHubAppAuthentication;
 };
 
 export async function checkToken(
-  options: OAuthAppOptions
-): Promise<OAuthAppResult>;
+  options: CheckTokenOAuthAppOptions
+): Promise<CheckTokenOAuthAppResponse>;
 export async function checkToken(
-  options: GitHubAppOptions
-): Promise<GitHubAppResult>;
+  options: CheckTokenGitHubAppOptions
+): Promise<CheckTokenGitHubAppResponse>;
 
 export async function checkToken(
-  options: OAuthAppOptions | GitHubAppOptions
+  options: CheckTokenOAuthAppOptions | CheckTokenGitHubAppOptions
 ): Promise<any> {
   const request =
     options.request ||

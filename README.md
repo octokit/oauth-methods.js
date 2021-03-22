@@ -25,6 +25,7 @@
   - [OAuth APP authentication](#oauth-app-authentication)
   - [GitHub App with non-expiring user authentication](#github-app-with-non-expiring-user-authentication)
   - [GitHub App with expiring user authentication](#github-app-with-expiring-user-authentication)
+- [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -1568,6 +1569,43 @@ import {
   OAuthAppAuthentication,
   GitHubAppAuthentication,
   GitHubAppAuthenticationWithExpiration,
+  GetWebFlowAuthorizationUrlOAuthAppOptions,
+  GetWebFlowAuthorizationUrlGitHubAppOptions,
+  GetWebFlowAuthorizationUrlOAuthAppResult,
+  GetWebFlowAuthorizationUrlGitHubAppResult,
+  CheckTokenOAuthAppOptions,
+  CheckTokenGitHubAppOptions,
+  CheckTokenOAuthAppResponse,
+  CheckTokenGitHubAppResponse,
+  ExchangeWebFlowCodeOAuthAppOptions,
+  ExchangeWebFlowCodeGitHubAppOptions,
+  ExchangeWebFlowCodeOAuthAppResponse,
+  ExchangeWebFlowCodeGitHubAppResponse,
+  CreateDeviceCodeOAuthAppOptions,
+  CreateDeviceCodeGitHubAppOptions,
+  CreateDeviceCodeDeviceTokenResponse,
+  ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret,
+  ExchangeDeviceCodeOAuthAppOptions,
+  ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret,
+  ExchangeDeviceCodeGitHubAppOptions,
+  ExchangeDeviceCodeOAuthAppResponse,
+  ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret,
+  ExchangeDeviceCodeGitHubAppResponse,
+  ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret,
+  RefreshTokenOptions,
+  RefreshTokenResponse,
+  ScopeTokenOptions,
+  ScopeTokenResponse,
+  ResetTokenOAuthAppOptions,
+  ResetTokenGitHubAppOptions,
+  ResetTokenOAuthAppResponse,
+  ResetTokenGitHubAppResponse,
+  DeleteTokenOAuthAppOptions,
+  DeleteTokenGitHubAppOptions,
+  DeleteTokenResponse,
+  DeleteAuthorizationOAuthAppOptions,
+  DeleteAuthorizationGitHubAppOptions,
+  DeleteAuthorizationResponse,
 } from "@octokit/oauth-methods";
 ```
 

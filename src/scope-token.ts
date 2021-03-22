@@ -18,7 +18,9 @@ type RepositoriesOption =
   | {
       repository_ids?: number[];
     };
-type Options = {
+type Endpoint = Endpoints["POST /applications/{client_id}/token/scoped"];
+
+export type ScopeTokenOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -28,12 +30,13 @@ type Options = {
 } & TargetOption &
   RepositoriesOption;
 
-type Endpoint = Endpoints["POST /applications/{client_id}/token/scoped"];
-type Result = Endpoint["response"] & {
+export type ScopeTokenResponse = Endpoint["response"] & {
   authentication: GitHubAppAuthentication;
 };
 
-export async function scopeToken(options: Options): Promise<Result> {
+export async function scopeToken(
+  options: ScopeTokenOptions
+): Promise<ScopeTokenResponse> {
   const {
     request,
     clientType,

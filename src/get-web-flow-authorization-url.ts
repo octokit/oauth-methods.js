@@ -8,10 +8,10 @@ import { RequestInterface } from "@octokit/types";
 
 import { requestToOAuthBaseUrl } from "./utils";
 
-type OAuthAppOptions = {
+export type GetWebFlowAuthorizationUrlOAuthAppOptions = {
+  clientType: "oauth-app";
   clientId: string;
 
-  clientType?: "oauth-app";
   allowSignup?: boolean;
   login?: string;
   scopes?: string | string[];
@@ -20,10 +20,10 @@ type OAuthAppOptions = {
   request?: RequestInterface;
 };
 
-type GitHubAppOptions = {
+export type GetWebFlowAuthorizationUrlGitHubAppOptions = {
+  clientType: "github-app";
   clientId: string;
 
-  clientType: "github-app";
   allowSignup?: boolean;
   login?: string;
   redirectUrl?: string;
@@ -31,17 +31,24 @@ type GitHubAppOptions = {
   request?: RequestInterface;
 };
 
+export type GetWebFlowAuthorizationUrlOAuthAppResult = OAuthAppResult;
+export type GetWebFlowAuthorizationUrlGitHubAppResult = GitHubAppResult;
+
 export function getWebFlowAuthorizationUrl(
-  options: OAuthAppOptions
+  options: GetWebFlowAuthorizationUrlOAuthAppOptions
 ): OAuthAppResult;
 export function getWebFlowAuthorizationUrl(
-  options: GitHubAppOptions
+  options: GetWebFlowAuthorizationUrlGitHubAppOptions
 ): GitHubAppResult;
 
 export function getWebFlowAuthorizationUrl({
   request = defaultRequest,
   ...options
-}: OAuthAppOptions | GitHubAppOptions): OAuthAppResult | GitHubAppResult {
+}:
+  | GetWebFlowAuthorizationUrlOAuthAppOptions
+  | GetWebFlowAuthorizationUrlGitHubAppOptions):
+  | GetWebFlowAuthorizationUrlOAuthAppResult
+  | GetWebFlowAuthorizationUrlGitHubAppResult {
   const baseUrl = requestToOAuthBaseUrl(request);
 
   // @ts-expect-error TypeScript wants `clientType` to be set explicitly ¯\_(ツ)_/¯

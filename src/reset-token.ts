@@ -4,14 +4,14 @@ import btoa from "btoa-lite";
 
 import { OAuthAppAuthentication, GitHubAppAuthentication } from "./types";
 
-type OAuthAppOptions = {
+export type ResetTokenOAuthAppOptions = {
   clientType: "oauth-app";
   clientId: string;
   clientSecret: string;
   token: string;
   request?: RequestInterface;
 };
-type GitHubAppOptions = {
+export type ResetTokenGitHubAppOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
@@ -19,22 +19,22 @@ type GitHubAppOptions = {
   request?: RequestInterface;
 };
 
-type OAuthAppResult = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
+export type ResetTokenOAuthAppResponse = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
   authentication: OAuthAppAuthentication;
 };
-type GitHubAppResult = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
+export type ResetTokenGitHubAppResponse = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
   authentication: GitHubAppAuthentication;
 };
 
 export async function resetToken(
-  options: OAuthAppOptions
-): Promise<OAuthAppResult>;
+  options: ResetTokenOAuthAppOptions
+): Promise<ResetTokenOAuthAppResponse>;
 export async function resetToken(
-  options: GitHubAppOptions
-): Promise<GitHubAppResult>;
+  options: ResetTokenGitHubAppOptions
+): Promise<ResetTokenGitHubAppResponse>;
 
 export async function resetToken(
-  options: OAuthAppOptions | GitHubAppOptions
+  options: ResetTokenOAuthAppOptions | ResetTokenGitHubAppOptions
 ): Promise<any> {
   const request =
     options.request ||
