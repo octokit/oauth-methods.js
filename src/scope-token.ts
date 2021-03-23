@@ -4,31 +4,35 @@ import btoa from "btoa-lite";
 
 import { GitHubAppAuthentication } from "./types";
 
-type TargetOption =
-  | {
-      target: string;
-    }
-  | {
-      target_id: number;
-    };
-type RepositoriesOption =
-  | {
-      repositories?: string[];
-    }
-  | {
-      repository_ids?: number[];
-    };
-type Endpoint = Endpoints["POST /applications/{client_id}/token/scoped"];
-
-export type ScopeTokenOptions = {
+type CommonOptions = {
   clientType: "github-app";
   clientId: string;
   clientSecret: string;
   token: string;
   permissions?: Endpoint["parameters"]["permissions"];
   request?: RequestInterface;
-} & TargetOption &
-  RepositoriesOption;
+};
+
+type TargetOption = {
+  target: string;
+};
+type TargetIdOption = {
+  target_id: number;
+};
+type RepositoriesOption = {
+  repositories?: string[];
+};
+type RepositoryIdsOption = {
+  repository_ids?: number[];
+};
+
+type Endpoint = Endpoints["POST /applications/{client_id}/token/scoped"];
+
+export type ScopeTokenOptions =
+  | (CommonOptions & TargetOption & RepositoriesOption)
+  | (CommonOptions & TargetIdOption & RepositoriesOption)
+  | (CommonOptions & TargetOption & RepositoryIdsOption)
+  | (CommonOptions & TargetIdOption & RepositoryIdsOption);
 
 export type ScopeTokenResponse = Endpoint["response"] & {
   authentication: GitHubAppAuthentication;
@@ -62,7 +66,7 @@ export async function scopeToken(
     clientType,
     clientId,
     clientSecret,
-    token: options.token,
+    token: response.data.token,
   };
 
   return { ...response, authentication };

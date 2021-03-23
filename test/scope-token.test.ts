@@ -11,6 +11,7 @@ describe("scopeToken()", () => {
           login: "octokit",
           id: 1,
         },
+        token: "usertoken456",
       },
       {
         headers: {
@@ -55,6 +56,7 @@ describe("scopeToken()", () => {
           "id": 1,
           "login": "octokit",
         },
+        "token": "usertoken456",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
@@ -62,7 +64,7 @@ describe("scopeToken()", () => {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",
-        "token": "usertoken123",
+        "token": "usertoken456",
       }
     `);
   });
