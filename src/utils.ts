@@ -24,7 +24,7 @@ export async function oauthRequest(
 
   if ("error" in response.data) {
     const error = new RequestError(
-      `${response.data.error_description} (${response.data.error}, ${response.data.error_url})`,
+      `${response.data.error_description} (${response.data.error}, ${response.data.error_uri})`,
       400,
       {
         request: request.endpoint.merge(
