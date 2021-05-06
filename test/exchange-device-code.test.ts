@@ -119,7 +119,7 @@ describe("exchangeDeviceCode()", () => {
       {
         error: "authorization_pending",
         error_description: "error_description",
-        error_url: "error_url",
+        error_uri: "error_uri",
       },
       {
         headers: {
@@ -151,7 +151,7 @@ describe("exchangeDeviceCode()", () => {
           }),
         })
     ).rejects.toMatchInlineSnapshot(
-      `[HttpError: error_description (authorization_pending, error_url)]`
+      `[HttpError: error_description (authorization_pending, error_uri)]`
     );
   });
 
