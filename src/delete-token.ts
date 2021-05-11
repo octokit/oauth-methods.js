@@ -17,7 +17,8 @@ export type DeleteTokenGitHubAppOptions = {
   request?: RequestInterface;
 };
 
-export type DeleteTokenResponse = Endpoints["DELETE /applications/{client_id}/token"]["response"];
+export type DeleteTokenResponse =
+  Endpoints["DELETE /applications/{client_id}/token"]["response"];
 
 export async function deleteToken(
   options: DeleteTokenOAuthAppOptions

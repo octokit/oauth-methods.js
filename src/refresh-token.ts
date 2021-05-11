@@ -15,9 +15,10 @@ export type RefreshTokenOptions = {
   request?: RequestInterface;
 };
 
-export type RefreshTokenResponse = OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
-  authentication: GitHubAppAuthenticationWithExpiration;
-};
+export type RefreshTokenResponse =
+  OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
+    authentication: GitHubAppAuthenticationWithExpiration;
+  };
 
 export async function refreshToken(
   options: RefreshTokenOptions

@@ -20,9 +20,10 @@ export type ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret = {
   request?: RequestInterface;
   scopes?: string[];
 };
-export type ExchangeDeviceCodeOAuthAppOptions = ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret & {
-  clientSecret: string;
-};
+export type ExchangeDeviceCodeOAuthAppOptions =
+  ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret & {
+    clientSecret: string;
+  };
 export type ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret = {
   clientType: "github-app";
   clientId: string;
@@ -32,9 +33,10 @@ export type ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret = {
   request?: RequestInterface;
 };
 
-export type ExchangeDeviceCodeGitHubAppOptions = ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret & {
-  clientSecret: string;
-};
+export type ExchangeDeviceCodeGitHubAppOptions =
+  ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret & {
+    clientSecret: string;
+  };
 
 type OAuthAppAuthenticationWithoutClientSecret = Omit<
   OAuthAppAuthentication,
@@ -49,13 +51,15 @@ type GitHubAppAuthenticationWithExpirationWithoutClientSecret = Omit<
   "clientSecret"
 >;
 
-export type ExchangeDeviceCodeOAuthAppResponse = OctokitResponse<OAuthAppCreateTokenResponseData> & {
-  authentication: OAuthAppAuthentication;
-};
+export type ExchangeDeviceCodeOAuthAppResponse =
+  OctokitResponse<OAuthAppCreateTokenResponseData> & {
+    authentication: OAuthAppAuthentication;
+  };
 
-export type ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret = OctokitResponse<OAuthAppCreateTokenResponseData> & {
-  authentication: OAuthAppAuthenticationWithoutClientSecret;
-};
+export type ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret =
+  OctokitResponse<OAuthAppCreateTokenResponseData> & {
+    authentication: OAuthAppAuthenticationWithoutClientSecret;
+  };
 
 export type ExchangeDeviceCodeGitHubAppResponse = OctokitResponse<
   | GitHubAppCreateTokenResponseData
@@ -66,14 +70,15 @@ export type ExchangeDeviceCodeGitHubAppResponse = OctokitResponse<
     | GitHubAppAuthenticationWithExpiration;
 };
 
-export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret = OctokitResponse<
-  | GitHubAppCreateTokenResponseData
-  | GitHubAppCreateTokenWithExpirationResponseData
-> & {
-  authentication:
-    | GitHubAppAuthenticationWithoutClientSecret
-    | GitHubAppAuthenticationWithExpirationWithoutClientSecret;
-};
+export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret =
+  OctokitResponse<
+    | GitHubAppCreateTokenResponseData
+    | GitHubAppCreateTokenWithExpirationResponseData
+  > & {
+    authentication:
+      | GitHubAppAuthenticationWithoutClientSecret
+      | GitHubAppAuthenticationWithExpirationWithoutClientSecret;
+  };
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.

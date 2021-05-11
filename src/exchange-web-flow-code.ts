@@ -30,9 +30,10 @@ export type ExchangeWebFlowCodeGitHubAppOptions = {
   request?: RequestInterface;
 };
 
-export type ExchangeWebFlowCodeOAuthAppResponse = OctokitResponse<OAuthAppCreateTokenResponseData> & {
-  authentication: OAuthAppAuthentication;
-};
+export type ExchangeWebFlowCodeOAuthAppResponse =
+  OctokitResponse<OAuthAppCreateTokenResponseData> & {
+    authentication: OAuthAppAuthentication;
+  };
 export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
   | GitHubAppCreateTokenResponseData
   | GitHubAppCreateTokenWithExpirationResponseData
