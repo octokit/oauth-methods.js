@@ -19,12 +19,14 @@ export type CheckTokenGitHubAppOptions = {
   request?: RequestInterface;
 };
 
-export type CheckTokenOAuthAppResponse = Endpoints["POST /applications/{client_id}/token"]["response"] & {
-  authentication: OAuthAppAuthentication;
-};
-export type CheckTokenGitHubAppResponse = Endpoints["POST /applications/{client_id}/token"]["response"] & {
-  authentication: GitHubAppAuthentication;
-};
+export type CheckTokenOAuthAppResponse =
+  Endpoints["POST /applications/{client_id}/token"]["response"] & {
+    authentication: OAuthAppAuthentication;
+  };
+export type CheckTokenGitHubAppResponse =
+  Endpoints["POST /applications/{client_id}/token"]["response"] & {
+    authentication: GitHubAppAuthentication;
+  };
 
 export async function checkToken(
   options: CheckTokenOAuthAppOptions

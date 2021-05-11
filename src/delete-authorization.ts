@@ -16,7 +16,8 @@ export type DeleteAuthorizationGitHubAppOptions = {
   token: string;
   request?: RequestInterface;
 };
-export type DeleteAuthorizationResponse = Endpoints["DELETE /applications/{client_id}/grant"]["response"];
+export type DeleteAuthorizationResponse =
+  Endpoints["DELETE /applications/{client_id}/grant"]["response"];
 
 export async function deleteAuthorization(
   options: DeleteAuthorizationOAuthAppOptions

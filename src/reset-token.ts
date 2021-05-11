@@ -19,12 +19,14 @@ export type ResetTokenGitHubAppOptions = {
   request?: RequestInterface;
 };
 
-export type ResetTokenOAuthAppResponse = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
-  authentication: OAuthAppAuthentication;
-};
-export type ResetTokenGitHubAppResponse = Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
-  authentication: GitHubAppAuthentication;
-};
+export type ResetTokenOAuthAppResponse =
+  Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
+    authentication: OAuthAppAuthentication;
+  };
+export type ResetTokenGitHubAppResponse =
+  Endpoints["PATCH /applications/{client_id}/token"]["response"] & {
+    authentication: GitHubAppAuthentication;
+  };
 
 export async function resetToken(
   options: ResetTokenOAuthAppOptions
