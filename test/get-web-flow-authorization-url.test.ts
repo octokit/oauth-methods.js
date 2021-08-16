@@ -30,19 +30,19 @@ describe("getWebFlowAuthorizationUrl()", () => {
     });
 
     expect(result).toMatchInlineSnapshot(`
-      Object {
-        "allowSignup": false,
-        "clientId": "1234567890abcdef1234",
-        "clientType": "oauth-app",
-        "login": "octocat",
-        "redirectUrl": "https://acme-inc.com/login",
-        "scopes": Array [
-          "repo",
-        ],
-        "state": "state123",
-        "url": "https://ghe.acme-inc.com/login/oauth/authorize?allow_signup=false&client_id=1234567890abcdef1234&login=octocat&redirect_uri=https://acme-inc.com/login&scope=repo&state=state123",
-      }
-    `);
+Object {
+  "allowSignup": false,
+  "clientId": "1234567890abcdef1234",
+  "clientType": "oauth-app",
+  "login": "octocat",
+  "redirectUrl": "https://acme-inc.com/login",
+  "scopes": Array [
+    "repo",
+  ],
+  "state": "state123",
+  "url": "https://ghe.acme-inc.com/login/oauth/authorize?allow_signup=false&client_id=1234567890abcdef1234&login=octocat&redirect_uri=https%3A%2F%2Facme-inc.com%2Flogin&scope=repo&state=state123",
+}
+`);
   });
 
   it("all options for GitHub Apps", () => {
@@ -59,15 +59,15 @@ describe("getWebFlowAuthorizationUrl()", () => {
     });
 
     expect(result).toMatchInlineSnapshot(`
-      Object {
-        "allowSignup": false,
-        "clientId": "lv1.1234567890abcdef",
-        "clientType": "github-app",
-        "login": "octocat",
-        "redirectUrl": "https://acme-inc.com/login",
-        "state": "state123",
-        "url": "https://ghe.acme-inc.com/login/oauth/authorize?allow_signup=false&client_id=lv1.1234567890abcdef&login=octocat&redirect_uri=https://acme-inc.com/login&state=state123",
-      }
-    `);
+Object {
+  "allowSignup": false,
+  "clientId": "lv1.1234567890abcdef",
+  "clientType": "github-app",
+  "login": "octocat",
+  "redirectUrl": "https://acme-inc.com/login",
+  "state": "state123",
+  "url": "https://ghe.acme-inc.com/login/oauth/authorize?allow_signup=false&client_id=lv1.1234567890abcdef&login=octocat&redirect_uri=https%3A%2F%2Facme-inc.com%2Flogin&state=state123",
+}
+`);
   });
 });
