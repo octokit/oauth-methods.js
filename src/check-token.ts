@@ -2,7 +2,11 @@ import { request as defaultRequest } from "@octokit/request";
 import { RequestInterface, Endpoints } from "@octokit/types";
 import btoa from "btoa-lite";
 
-import { OAuthAppAuthentication, GitHubAppAuthentication } from "./types";
+import {
+  OAuthAppAuthentication,
+  GitHubAppAuthenticationWithExpirationEnabled,
+  GitHubAppAuthenticationWithExpirationDisabled,
+} from "./types";
 
 export type CheckTokenOAuthAppOptions = {
   clientType: "oauth-app";
@@ -25,7 +29,9 @@ export type CheckTokenOAuthAppResponse =
   };
 export type CheckTokenGitHubAppResponse =
   Endpoints["POST /applications/{client_id}/token"]["response"] & {
-    authentication: GitHubAppAuthentication;
+    authentication:
+      | GitHubAppAuthenticationWithExpirationEnabled
+      | GitHubAppAuthenticationWithExpirationDisabled;
   };
 
 export async function checkToken(
@@ -60,6 +66,9 @@ export async function checkToken(
     token: options.token,
     scopes: response.data.scopes,
   };
+
+  if (response.data.expires_at)
+    authentication.expiresAt = response.data.expires_at;
 
   if (options.clientType === "github-app") {
     delete authentication.scopes;

@@ -6,6 +6,26 @@ export type OAuthAppAuthentication = {
   scopes: string[];
 };
 
+export type GitHubAppAuthenticationWithExpirationDisabled = {
+  clientType: "github-app";
+  clientId: string;
+  clientSecret: string;
+  token: string;
+};
+
+export type GitHubAppAuthenticationWithExpirationEnabled =
+  GitHubAppAuthenticationWithExpirationDisabled & { expiresAt: string };
+
+export type GitHubAppAuthenticationWithRefreshToken =
+  GitHubAppAuthenticationWithExpirationEnabled & {
+    refreshToken: string;
+    refreshTokenExpiresAt: string;
+  };
+
+/**
+ * @deprecated Use `GitHubAppAuthenticationWithExpirationDisabled` or
+ * `GitHubAppAuthenticationWithExpirationEnabled` instead.
+ */
 export type GitHubAppAuthentication = {
   clientType: "github-app";
   clientId: string;
@@ -13,6 +33,9 @@ export type GitHubAppAuthentication = {
   token: string;
 };
 
+/**
+ * @deprecated Use `GitHubAppAuthenticationWithRefreshToken` instead.
+ */
 export type GitHubAppAuthenticationWithExpiration = {
   clientType: "github-app";
   clientId: string;

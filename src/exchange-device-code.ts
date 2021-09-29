@@ -3,8 +3,9 @@ import { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import {
   OAuthAppAuthentication,
-  GitHubAppAuthentication,
-  GitHubAppAuthenticationWithExpiration,
+  GitHubAppAuthenticationWithExpirationEnabled,
+  GitHubAppAuthenticationWithExpirationDisabled,
+  GitHubAppAuthenticationWithRefreshToken,
   OAuthAppCreateTokenResponseData,
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
@@ -43,11 +44,12 @@ type OAuthAppAuthenticationWithoutClientSecret = Omit<
   "clientSecret"
 >;
 type GitHubAppAuthenticationWithoutClientSecret = Omit<
-  GitHubAppAuthentication,
+  | GitHubAppAuthenticationWithExpirationEnabled
+  | GitHubAppAuthenticationWithExpirationDisabled,
   "clientSecret"
 >;
 type GitHubAppAuthenticationWithExpirationWithoutClientSecret = Omit<
-  GitHubAppAuthenticationWithExpiration,
+  GitHubAppAuthenticationWithRefreshToken,
   "clientSecret"
 >;
 
@@ -66,8 +68,9 @@ export type ExchangeDeviceCodeGitHubAppResponse = OctokitResponse<
   | GitHubAppCreateTokenWithExpirationResponseData
 > & {
   authentication:
-    | GitHubAppAuthentication
-    | GitHubAppAuthenticationWithExpiration;
+    | GitHubAppAuthenticationWithExpirationEnabled
+    | GitHubAppAuthenticationWithExpirationDisabled
+    | GitHubAppAuthenticationWithRefreshToken;
 };
 
 export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret =

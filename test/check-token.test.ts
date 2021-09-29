@@ -62,6 +62,7 @@ describe("checkToken()", () => {
     const mock = fetchMock.sandbox().postOnce(
       "https://api.github.com/applications/lv1.1234567890abcdef/token",
       {
+        expires_at: "2021-10-06T17:26:27Z",
         scopes: [],
       },
       {
@@ -95,6 +96,7 @@ describe("checkToken()", () => {
 
     expect(data).toMatchInlineSnapshot(`
       Object {
+        "expires_at": "2021-10-06T17:26:27Z",
         "scopes": Array [],
       }
     `);
@@ -103,6 +105,7 @@ describe("checkToken()", () => {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",
+        "expiresAt": "2021-10-06T17:26:27Z",
         "token": "token123",
       }
     `);

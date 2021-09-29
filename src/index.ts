@@ -11,6 +11,9 @@ export * from "./delete-token";
 export * from "./delete-authorization";
 export {
   OAuthAppAuthentication,
+  GitHubAppAuthenticationWithExpirationDisabled,
+  GitHubAppAuthenticationWithExpirationEnabled,
+  GitHubAppAuthenticationWithRefreshToken,
   GitHubAppAuthentication,
   GitHubAppAuthenticationWithExpiration,
 } from "./types";

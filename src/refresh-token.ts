@@ -2,7 +2,7 @@ import { request as defaultRequest } from "@octokit/request";
 import { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import {
-  GitHubAppAuthenticationWithExpiration,
+  GitHubAppAuthenticationWithRefreshToken,
   GitHubAppCreateTokenWithExpirationResponseData,
 } from "./types";
 import { oauthRequest } from "./utils";
@@ -17,7 +17,7 @@ export type RefreshTokenOptions = {
 
 export type RefreshTokenResponse =
   OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
-    authentication: GitHubAppAuthenticationWithExpiration;
+    authentication: GitHubAppAuthenticationWithRefreshToken;
   };
 
 export async function refreshToken(
@@ -40,7 +40,7 @@ export async function refreshToken(
   );
 
   const apiTimeInMs = new Date(response.headers.date as string).getTime();
-  const authentication: GitHubAppAuthenticationWithExpiration = {
+  const authentication: GitHubAppAuthenticationWithRefreshToken = {
     clientType: "github-app",
     clientId: options.clientId,
     clientSecret: options.clientSecret,
