@@ -68,4 +68,60 @@ describe("scopeToken()", () => {
       }
     `);
   });
+
+  it("passes `expires_at` through", async () => {
+    const mock = fetchMock
+      .sandbox()
+      .postOnce(
+        "https://api.github.com/applications/lv1.1234567890abcdef/token/scoped",
+        {
+          account: {
+            login: "octokit",
+            id: 1,
+          },
+          expires_at: "2021-10-06T17:26:27Z",
+          token: "usertoken456",
+        }
+      );
+
+    const { data, authentication } = await scopeToken({
+      clientType: "github-app",
+      clientId: "lv1.1234567890abcdef",
+      clientSecret: "1234567890abcdef12347890abcdef12345678",
+      token: "usertoken123",
+      target: "octokit",
+      repositories: ["oauth-methods.js"],
+      permissions: {
+        issues: "write",
+      },
+      request: request.defaults({
+        headers: {
+          "user-agent": "test",
+        },
+        request: {
+          fetch: mock,
+        },
+      }),
+    });
+
+    expect(data).toMatchInlineSnapshot(`
+      Object {
+        "account": Object {
+          "id": 1,
+          "login": "octokit",
+        },
+        "expires_at": "2021-10-06T17:26:27Z",
+        "token": "usertoken456",
+      }
+    `);
+    expect(authentication).toMatchInlineSnapshot(`
+      Object {
+        "clientId": "lv1.1234567890abcdef",
+        "clientSecret": "1234567890abcdef12347890abcdef12345678",
+        "clientType": "github-app",
+        "expiresAt": "2021-10-06T17:26:27Z",
+        "token": "usertoken456",
+      }
+    `);
+  });
 });

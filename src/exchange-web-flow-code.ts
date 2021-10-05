@@ -3,8 +3,9 @@ import { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import {
   OAuthAppAuthentication,
-  GitHubAppAuthentication,
-  GitHubAppAuthenticationWithExpiration,
+  GitHubAppAuthenticationWithExpirationEnabled,
+  GitHubAppAuthenticationWithExpirationDisabled,
+  GitHubAppAuthenticationWithRefreshToken,
   OAuthAppCreateTokenResponseData,
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
@@ -39,8 +40,9 @@ export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
   | GitHubAppCreateTokenWithExpirationResponseData
 > & {
   authentication:
-    | GitHubAppAuthentication
-    | GitHubAppAuthenticationWithExpiration;
+    | GitHubAppAuthenticationWithExpirationEnabled
+    | GitHubAppAuthenticationWithExpirationDisabled
+    | GitHubAppAuthenticationWithRefreshToken;
 };
 
 /**

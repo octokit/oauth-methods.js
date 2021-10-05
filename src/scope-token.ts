@@ -2,7 +2,10 @@ import { request as defaultRequest } from "@octokit/request";
 import { RequestInterface, Endpoints } from "@octokit/types";
 import btoa from "btoa-lite";
 
-import { GitHubAppAuthentication } from "./types";
+import {
+  GitHubAppAuthenticationWithExpirationEnabled,
+  GitHubAppAuthenticationWithExpirationDisabled,
+} from "./types";
 
 type CommonOptions = {
   clientType: "github-app";
@@ -35,7 +38,9 @@ export type ScopeTokenOptions =
   | (CommonOptions & TargetIdOption & RepositoryIdsOption);
 
 export type ScopeTokenResponse = Endpoint["response"] & {
-  authentication: GitHubAppAuthentication;
+  authentication:
+    | GitHubAppAuthenticationWithExpirationEnabled
+    | GitHubAppAuthenticationWithExpirationDisabled;
 };
 
 export async function scopeToken(
@@ -62,12 +67,17 @@ export async function scopeToken(
     ...requestOptions,
   });
 
-  const authentication: GitHubAppAuthentication = {
-    clientType,
-    clientId,
-    clientSecret,
-    token: response.data.token,
-  };
+  const authentication:
+    | GitHubAppAuthenticationWithExpirationEnabled
+    | GitHubAppAuthenticationWithExpirationDisabled = Object.assign(
+    {
+      clientType,
+      clientId,
+      clientSecret,
+      token: response.data.token,
+    },
+    response.data.expires_at ? { expiresAt: response.data.expires_at } : {}
+  );
 
   return { ...response, authentication };
 }
