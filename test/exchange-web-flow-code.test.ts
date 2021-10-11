@@ -21,7 +21,6 @@ describe("exchangeWebFlowCode()", () => {
           client_id: "1234567890abcdef1234",
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
-          state: "state123",
         },
       }
     );
@@ -31,7 +30,6 @@ describe("exchangeWebFlowCode()", () => {
       clientId: "1234567890abcdef1234",
       clientSecret: "1234567890abcdef12347890abcdef12345678",
       code: "code123",
-      state: "state123",
       request: request.defaults({
         headers: {
           "user-agent": "test",
@@ -78,7 +76,6 @@ describe("exchangeWebFlowCode()", () => {
           client_id: "1234567890abcdef1234",
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
-          state: "state123",
         },
       }
     );
@@ -88,7 +85,6 @@ describe("exchangeWebFlowCode()", () => {
       clientId: "1234567890abcdef1234",
       clientSecret: "1234567890abcdef12347890abcdef12345678",
       code: "code123",
-      state: "state123",
       request: request.defaults({
         headers: {
           "user-agent": "test",
@@ -138,7 +134,6 @@ describe("exchangeWebFlowCode()", () => {
           client_id: "1234567890abcdef1234",
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
-          state: "state123",
           redirect_uri: "https://acme-inc.com/login",
         },
       }
@@ -149,7 +144,6 @@ describe("exchangeWebFlowCode()", () => {
       clientId: "1234567890abcdef1234",
       clientSecret: "1234567890abcdef12347890abcdef12345678",
       code: "code123",
-      state: "state123",
       redirectUrl: "https://acme-inc.com/login",
       request: request.defaults({
         headers: {
@@ -198,7 +192,6 @@ describe("exchangeWebFlowCode()", () => {
           client_id: "lv1.1234567890abcdef",
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
-          state: "state123",
           redirect_uri: "https://acme-inc.com/login",
         },
       }
@@ -209,7 +202,6 @@ describe("exchangeWebFlowCode()", () => {
       clientId: "lv1.1234567890abcdef",
       clientSecret: "1234567890abcdef12347890abcdef12345678",
       code: "code123",
-      state: "state123",
       redirectUrl: "https://acme-inc.com/login",
       request: request.defaults({
         headers: {
@@ -265,7 +257,6 @@ describe("exchangeWebFlowCode()", () => {
           client_id: "lv1.1234567890abcdef",
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
-          state: "state123",
         },
       }
     );
@@ -275,7 +266,6 @@ describe("exchangeWebFlowCode()", () => {
       clientId: "lv1.1234567890abcdef",
       clientSecret: "1234567890abcdef12347890abcdef12345678",
       code: "code123",
-      state: "state123",
       request: request.defaults({
         headers: {
           "user-agent": "test",

@@ -18,7 +18,6 @@ export type ExchangeWebFlowCodeOAuthAppOptions = {
   clientSecret: string;
   code: string;
   redirectUrl?: string;
-  state?: string;
   request?: RequestInterface;
 };
 export type ExchangeWebFlowCodeGitHubAppOptions = {
@@ -27,7 +26,6 @@ export type ExchangeWebFlowCodeGitHubAppOptions = {
   clientSecret: string;
   code: string;
   redirectUrl?: string;
-  state?: string;
   request?: RequestInterface;
 };
 
@@ -77,7 +75,6 @@ export async function exchangeWebFlowCode(
       client_secret: options.clientSecret,
       code: options.code,
       redirect_uri: options.redirectUrl,
-      state: options.state,
     }
   );
 

@@ -461,17 +461,6 @@ Options
     </tr>
     <tr>
       <th>
-        <code>state</code>
-      </th>
-      <th>
-        <code>string</code>
-      </th>
-      <td>
-        The <code>state</code> option you passed to <a href="#getwebflowauthorizationurl"><code>getWebFlowAuthorizationUrl()</code></a>
-      </td>
-    </tr>
-    <tr>
-      <th>
         <code>request</code>
       </th>
       <th>
