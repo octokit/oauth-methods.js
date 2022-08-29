@@ -47,7 +47,7 @@ export async function scopeToken(
   options: ScopeTokenOptions
 ): Promise<ScopeTokenResponse> {
   const {
-    request,
+    request: optionsRequest,
     clientType,
     clientId,
     clientSecret,
@@ -55,17 +55,23 @@ export async function scopeToken(
     ...requestOptions
   } = options;
 
-  const response = await (
-    request ||
-    /* istanbul ignore next: we always pass a custom request in tests */ defaultRequest
-  )("POST /applications/{client_id}/token/scoped", {
-    headers: {
-      authorization: `basic ${btoa(`${clientId}:${clientSecret}`)}`,
-    },
-    client_id: clientId,
-    access_token: token,
-    ...requestOptions,
-  });
+  const request =
+    optionsRequest ||
+    /* istanbul ignore next: we always pass a custom request in tests */
+    defaultRequest;
+
+  const response = await request(
+    "POST /applications/{client_id}/token/scoped",
+    // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
+    {
+      headers: {
+        authorization: `basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      },
+      client_id: clientId,
+      access_token: token,
+      ...requestOptions,
+    }
+  );
 
   const authentication:
     | GitHubAppAuthenticationWithExpirationEnabled
@@ -79,5 +85,6 @@ export async function scopeToken(
     response.data.expires_at ? { expiresAt: response.data.expires_at } : {}
   );
 
+  // @ts-expect-error - response.status type is incompatible (200 vs number)
   return { ...response, authentication };
 }

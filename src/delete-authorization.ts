@@ -37,11 +37,15 @@ export async function deleteAuthorization(
     defaultRequest;
 
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
-  return request("DELETE /applications/{client_id}/grant", {
-    headers: {
-      authorization: `basic ${auth}`,
-    },
-    client_id: options.clientId,
-    access_token: options.token,
-  });
+  return request(
+    "DELETE /applications/{client_id}/grant",
+    // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
+    {
+      headers: {
+        authorization: `basic ${auth}`,
+      },
+      client_id: options.clientId,
+      access_token: options.token,
+    }
+  );
 }
