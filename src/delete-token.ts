@@ -38,7 +38,7 @@ export async function deleteToken(
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
   return request(
     "DELETE /applications/{client_id}/token",
-    // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
+
     {
       headers: {
         authorization: `basic ${auth}`,
