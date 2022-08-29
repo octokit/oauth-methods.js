@@ -49,6 +49,7 @@ export async function checkToken(
     /* istanbul ignore next: we always pass a custom request in tests */
     defaultRequest;
 
+  // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
   const response = await request("POST /applications/{client_id}/token", {
     headers: {
       authorization: `basic ${btoa(

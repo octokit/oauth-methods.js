@@ -50,13 +50,17 @@ export async function resetToken(
     defaultRequest;
 
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
-  const response = await request("PATCH /applications/{client_id}/token", {
-    headers: {
-      authorization: `basic ${auth}`,
-    },
-    client_id: options.clientId,
-    access_token: options.token,
-  });
+  const response = await request(
+    "PATCH /applications/{client_id}/token",
+    // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
+    {
+      headers: {
+        authorization: `basic ${auth}`,
+      },
+      client_id: options.clientId,
+      access_token: options.token,
+    }
+  );
 
   const authentication: Record<string, unknown> = {
     clientType: options.clientType,
