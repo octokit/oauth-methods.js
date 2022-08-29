@@ -62,7 +62,7 @@ export async function scopeToken(
 
   const response = await request(
     "POST /applications/{client_id}/token/scoped",
-    // @ts-expect-error - TODO: I don't get why TS is complaining here. It works with `defaultRequest` directly
+
     {
       headers: {
         authorization: `basic ${btoa(`${clientId}:${clientSecret}`)}`,
@@ -85,6 +85,5 @@ export async function scopeToken(
     response.data.expires_at ? { expiresAt: response.data.expires_at } : {}
   );
 
-  // @ts-expect-error - response.status type is incompatible (200 vs number)
   return { ...response, authentication };
 }
