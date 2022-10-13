@@ -39,18 +39,18 @@ describe("checkToken()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
-        "scopes": Array [
+      {
+        "scopes": [
           "repo",
         ],
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "1234567890abcdef1234",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "oauth-app",
-        "scopes": Array [
+        "scopes": [
           "repo",
         ],
         "token": "token123",
@@ -95,13 +95,13 @@ describe("checkToken()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "expires_at": "2021-10-06T17:26:27Z",
-        "scopes": Array [],
+        "scopes": [],
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",

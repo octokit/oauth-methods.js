@@ -39,9 +39,9 @@ describe("deleteToken()", () => {
     });
 
     expect(response).toMatchInlineSnapshot(`
-      Object {
+      {
         "data": undefined,
-        "headers": Object {},
+        "headers": {},
         "status": 204,
         "url": "https://api.github.com/applications/1234567890abcdef1234/token",
       }
@@ -85,12 +85,12 @@ describe("deleteToken()", () => {
     });
 
     expect(response).toMatchInlineSnapshot(`
-      Object {
-        "data": Object {
-          "scopes": Array [],
+      {
+        "data": {
+          "scopes": [],
           "token": "token456",
         },
-        "headers": Object {
+        "headers": {
           "content-length": "32",
           "content-type": "application/json",
         },

@@ -41,7 +41,7 @@ describe("createDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "device_code": "devicecode123",
         "expires_in": 900,
         "interval": 5,
@@ -87,7 +87,7 @@ describe("createDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "device_code": "devicecode123",
         "expires_in": 900,
         "interval": 5,

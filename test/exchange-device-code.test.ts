@@ -40,17 +40,17 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "scope": "",
         "token_type": "bearer",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "1234567890abcdef1234",
         "clientType": "oauth-app",
-        "scopes": Array [],
+        "scopes": [],
         "token": "secret123",
       }
     `);
@@ -94,17 +94,17 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "scope": "repo gist",
         "token_type": "bearer",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "1234567890abcdef1234",
         "clientType": "oauth-app",
-        "scopes": Array [
+        "scopes": [
           "repo",
           "gist",
         ],
@@ -193,18 +193,18 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "scope": "",
         "token_type": "bearer",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "1234567890abcdef1234",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "oauth-app",
-        "scopes": Array [],
+        "scopes": [],
         "token": "secret123",
       }
     `);
@@ -247,14 +247,14 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "scope": "",
         "token_type": "bearer",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientType": "github-app",
         "token": "secret123",
@@ -300,14 +300,14 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "scope": "",
         "token_type": "bearer",
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",
@@ -361,7 +361,7 @@ describe("exchangeDeviceCode()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret123",
         "expires_in": 28800,
         "refresh_token": "r1.token123",
@@ -371,7 +371,7 @@ describe("exchangeDeviceCode()", () => {
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientType": "github-app",
         "expiresAt": "1970-01-01T08:00:00.000Z",
