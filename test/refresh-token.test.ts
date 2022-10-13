@@ -50,7 +50,7 @@ describe("refreshToken()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
+      {
         "access_token": "secret456",
         "expires_in": 28800,
         "refresh_token": "r1.token456",
@@ -60,7 +60,7 @@ describe("refreshToken()", () => {
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",

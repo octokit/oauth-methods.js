@@ -51,8 +51,8 @@ describe("scopeToken()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
-        "account": Object {
+      {
+        "account": {
           "id": 1,
           "login": "octokit",
         },
@@ -60,7 +60,7 @@ describe("scopeToken()", () => {
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",
@@ -105,8 +105,8 @@ describe("scopeToken()", () => {
     });
 
     expect(data).toMatchInlineSnapshot(`
-      Object {
-        "account": Object {
+      {
+        "account": {
           "id": 1,
           "login": "octokit",
         },
@@ -115,7 +115,7 @@ describe("scopeToken()", () => {
       }
     `);
     expect(authentication).toMatchInlineSnapshot(`
-      Object {
+      {
         "clientId": "lv1.1234567890abcdef",
         "clientSecret": "1234567890abcdef12347890abcdef12345678",
         "clientType": "github-app",
