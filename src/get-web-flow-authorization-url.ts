@@ -1,5 +1,5 @@
-import {
-  oauthAuthorizationUrl,
+import { oauthAuthorizationUrl } from "@octokit/oauth-authorization-url";
+import type {
   OAuthAppResult,
   GitHubAppResult,
 } from "@octokit/oauth-authorization-url";

@@ -2,7 +2,7 @@ import { request as defaultRequest } from "@octokit/request";
 import type { RequestInterface, Endpoints } from "@octokit/types";
 import btoa from "btoa-lite";
 
-import {
+import type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
