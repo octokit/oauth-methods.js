@@ -1,10 +1,10 @@
-import {
-  oauthAuthorizationUrl,
+import { oauthAuthorizationUrl } from "@octokit/oauth-authorization-url";
+import type {
   OAuthAppResult,
   GitHubAppResult,
 } from "@octokit/oauth-authorization-url";
 import { request as defaultRequest } from "@octokit/request";
-import { RequestInterface } from "@octokit/types";
+import type { RequestInterface } from "@octokit/types";
 
 import { requestToOAuthBaseUrl } from "./utils";
 
