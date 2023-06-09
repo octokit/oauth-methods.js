@@ -35,6 +35,7 @@ async function main() {
 
   const entryPoints = ["./pkg/dist-src/index.js"];
 
+  // Build a CJS Node.js bundle
   await esbuild.build({
     entryPoints,
     outdir: "pkg/dist-node",
