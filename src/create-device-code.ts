@@ -1,5 +1,5 @@
 import { request as defaultRequest } from "@octokit/request";
-import { OctokitResponse, RequestInterface } from "@octokit/types";
+import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import { oauthRequest } from "./utils";
 

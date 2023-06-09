@@ -1,7 +1,7 @@
 import { request as defaultRequest } from "@octokit/request";
-import { OctokitResponse, RequestInterface } from "@octokit/types";
+import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
-import {
+import type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,

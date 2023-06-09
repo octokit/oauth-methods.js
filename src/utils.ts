@@ -1,4 +1,4 @@
-import { RequestInterface, RequestOptions } from "@octokit/types";
+import type { RequestInterface, RequestOptions } from "@octokit/types";
 import { RequestError } from "@octokit/request-error";
 
 export function requestToOAuthBaseUrl(request: RequestInterface): string {
