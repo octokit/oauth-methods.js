@@ -9,7 +9,7 @@ export * from "./scope-token";
 export * from "./reset-token";
 export * from "./delete-token";
 export * from "./delete-authorization";
-export {
+export type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationDisabled,
   GitHubAppAuthenticationWithExpirationEnabled,
