@@ -20,10 +20,10 @@
   "author": "Gregor Martynus (https://dev.to/gr2m)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/oauth-authorization-url": "^6.0.1",
-    "@octokit/request": "^6.2.3",
-    "@octokit/request-error": "^3.0.3",
-    "@octokit/types": "^9.0.0",
+    "@octokit/oauth-authorization-url": "^6.0.2",
+    "@octokit/request": "^6.2.5",
+    "@octokit/request-error": "^4.0.1",
+    "@octokit/types": "^9.3.0",
     "btoa-lite": "^1.0.0"
   },
   "devDependencies": {
