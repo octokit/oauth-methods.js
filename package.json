@@ -20,10 +20,10 @@
   "author": "Gregor Martynus (https://dev.to/gr2m)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/oauth-authorization-url": "^5.0.0",
-    "@octokit/request": "^6.2.3",
-    "@octokit/request-error": "^3.0.3",
-    "@octokit/types": "^9.0.0",
+    "@octokit/oauth-authorization-url": "^6.0.2",
+    "@octokit/request": "^6.2.5",
+    "@octokit/request-error": "^4.0.1",
+    "@octokit/types": "^9.3.0",
     "btoa-lite": "^1.0.0"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
     "@types/btoa-lite": "^1.0.0",
     "@types/jest": "^29.0.0",
     "@types/node": "^18.0.0",
-    "esbuild": "^0.17.19",
+    "esbuild": "^0.18.0",
     "fetch-mock": "^9.11.0",
     "glob": "^10.2.7",
     "jest": "^29.0.0",
@@ -95,6 +95,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 18"
   }
 }
