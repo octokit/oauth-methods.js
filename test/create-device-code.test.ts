@@ -23,7 +23,7 @@ describe("createDeviceCode()", () => {
           client_id: "1234567890abcdef1234",
           scope: "repo",
         },
-      }
+      },
     );
 
     const { data } = await createDeviceCode({
@@ -70,7 +70,7 @@ describe("createDeviceCode()", () => {
         body: {
           client_id: "lv1.1234567890abcdef",
         },
-      }
+      },
     );
 
     const { data } = await createDeviceCode({

@@ -22,7 +22,7 @@ describe("exchangeWebFlowCode()", () => {
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeWebFlowCode({
@@ -77,7 +77,7 @@ describe("exchangeWebFlowCode()", () => {
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeWebFlowCode({
@@ -136,7 +136,7 @@ describe("exchangeWebFlowCode()", () => {
           code: "code123",
           redirect_uri: "https://acme-inc.com/login",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeWebFlowCode({
@@ -194,7 +194,7 @@ describe("exchangeWebFlowCode()", () => {
           code: "code123",
           redirect_uri: "https://acme-inc.com/login",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeWebFlowCode({
@@ -258,7 +258,7 @@ describe("exchangeWebFlowCode()", () => {
           client_secret: "1234567890abcdef12347890abcdef12345678",
           code: "code123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeWebFlowCode({

@@ -87,28 +87,28 @@ export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret =
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
  */
 export async function exchangeDeviceCode(
-  options: ExchangeDeviceCodeOAuthAppOptions
+  options: ExchangeDeviceCodeOAuthAppOptions,
 ): Promise<ExchangeDeviceCodeOAuthAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps without clientSecret
  */
 export async function exchangeDeviceCode(
-  options: ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret
+  options: ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret,
 ): Promise<ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
-  options: ExchangeDeviceCodeGitHubAppOptions
+  options: ExchangeDeviceCodeGitHubAppOptions,
 ): Promise<ExchangeDeviceCodeGitHubAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps without using `clientSecret`. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
-  options: ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret
+  options: ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret,
 ): Promise<ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret>;
 
 export async function exchangeDeviceCode(
@@ -116,7 +116,7 @@ export async function exchangeDeviceCode(
     | ExchangeDeviceCodeOAuthAppOptions
     | ExchangeDeviceCodeGitHubAppOptions
     | ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret
-    | ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret
+    | ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret,
 ): Promise<any> {
   const request =
     options.request ||
@@ -130,7 +130,7 @@ export async function exchangeDeviceCode(
       client_id: options.clientId,
       device_code: options.code,
       grant_type: "urn:ietf:params:oauth:grant-type:device_code",
-    }
+    },
   );
 
   const authentication: Record<string, unknown> = {
@@ -151,11 +151,11 @@ export async function exchangeDeviceCode(
       (authentication.refreshToken = response.data.refresh_token),
         (authentication.expiresAt = toTimestamp(
           apiTimeInMs,
-          response.data.expires_in
+          response.data.expires_in,
         )),
         (authentication.refreshTokenExpiresAt = toTimestamp(
           apiTimeInMs,
-          response.data.refresh_token_expires_in
+          response.data.refresh_token_expires_in,
         ));
     }
 

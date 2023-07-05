@@ -44,7 +44,7 @@ export type ScopeTokenResponse = Endpoint["response"] & {
 };
 
 export async function scopeToken(
-  options: ScopeTokenOptions
+  options: ScopeTokenOptions,
 ): Promise<ScopeTokenResponse> {
   const {
     request: optionsRequest,
@@ -70,7 +70,7 @@ export async function scopeToken(
       client_id: clientId,
       access_token: token,
       ...requestOptions,
-    }
+    },
   );
 
   const authentication:
@@ -82,7 +82,7 @@ export async function scopeToken(
       clientSecret,
       token: response.data.token,
     },
-    response.data.expires_at ? { expiresAt: response.data.expires_at } : {}
+    response.data.expires_at ? { expiresAt: response.data.expires_at } : {},
   );
 
   return { ...response, authentication };

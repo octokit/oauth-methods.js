@@ -11,7 +11,7 @@ describe("getWebFlowAuthorizationUrl()", () => {
     });
 
     expect(url).toEqual(
-      "https://github.com/login/oauth/authorize?allow_signup=true&client_id=1234567890abcdef1234&scope=repo&state=state123"
+      "https://github.com/login/oauth/authorize?allow_signup=true&client_id=1234567890abcdef1234&scope=repo&state=state123",
     );
   });
 

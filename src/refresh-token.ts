@@ -21,7 +21,7 @@ export type RefreshTokenResponse =
   };
 
 export async function refreshToken(
-  options: RefreshTokenOptions
+  options: RefreshTokenOptions,
 ): Promise<RefreshTokenResponse> {
   const request =
     options.request ||
@@ -36,7 +36,7 @@ export async function refreshToken(
       client_secret: options.clientSecret,
       grant_type: "refresh_token",
       refresh_token: options.refreshToken,
-    }
+    },
   );
 
   const apiTimeInMs = new Date(response.headers.date as string).getTime();
@@ -49,7 +49,7 @@ export async function refreshToken(
     expiresAt: toTimestamp(apiTimeInMs, response.data.expires_in),
     refreshTokenExpiresAt: toTimestamp(
       apiTimeInMs,
-      response.data.refresh_token_expires_in
+      response.data.refresh_token_expires_in,
     ),
   };
 

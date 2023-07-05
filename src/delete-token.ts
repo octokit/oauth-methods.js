@@ -21,14 +21,14 @@ export type DeleteTokenResponse =
   Endpoints["DELETE /applications/{client_id}/token"]["response"];
 
 export async function deleteToken(
-  options: DeleteTokenOAuthAppOptions
+  options: DeleteTokenOAuthAppOptions,
 ): Promise<DeleteTokenResponse>;
 export async function deleteToken(
-  options: DeleteTokenGitHubAppOptions
+  options: DeleteTokenGitHubAppOptions,
 ): Promise<DeleteTokenResponse>;
 
 export async function deleteToken(
-  options: DeleteTokenOAuthAppOptions | DeleteTokenGitHubAppOptions
+  options: DeleteTokenOAuthAppOptions | DeleteTokenGitHubAppOptions,
 ): Promise<any> {
   const request =
     options.request ||
@@ -45,6 +45,6 @@ export async function deleteToken(
       },
       client_id: options.clientId,
       access_token: options.token,
-    }
+    },
   );
 }
