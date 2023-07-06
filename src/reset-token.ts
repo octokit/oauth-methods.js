@@ -35,14 +35,14 @@ export type ResetTokenGitHubAppResponse =
   };
 
 export async function resetToken(
-  options: ResetTokenOAuthAppOptions
+  options: ResetTokenOAuthAppOptions,
 ): Promise<ResetTokenOAuthAppResponse>;
 export async function resetToken(
-  options: ResetTokenGitHubAppOptions
+  options: ResetTokenGitHubAppOptions,
 ): Promise<ResetTokenGitHubAppResponse>;
 
 export async function resetToken(
-  options: ResetTokenOAuthAppOptions | ResetTokenGitHubAppOptions
+  options: ResetTokenOAuthAppOptions | ResetTokenGitHubAppOptions,
 ): Promise<any> {
   const request =
     options.request ||
@@ -59,7 +59,7 @@ export async function resetToken(
       },
       client_id: options.clientId,
       access_token: options.token,
-    }
+    },
   );
 
   const authentication: Record<string, unknown> = {

@@ -20,7 +20,7 @@ describe("deleteToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const response = await deleteToken({
@@ -66,7 +66,7 @@ describe("deleteToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const response = await deleteToken({

@@ -20,7 +20,7 @@ describe("checkToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await checkToken({
@@ -76,7 +76,7 @@ describe("checkToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await checkToken({

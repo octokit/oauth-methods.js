@@ -11,7 +11,7 @@ export function requestToOAuthBaseUrl(request: RequestInterface): string {
 export async function oauthRequest(
   request: RequestInterface,
   route: string,
-  parameters: Record<string, unknown>
+  parameters: Record<string, unknown>,
 ) {
   const withOAuthParameters = {
     baseUrl: requestToOAuthBaseUrl(request),
@@ -29,10 +29,10 @@ export async function oauthRequest(
       {
         request: request.endpoint.merge(
           route,
-          withOAuthParameters
+          withOAuthParameters,
         ) as RequestOptions,
         headers: response.headers,
-      }
+      },
     );
 
     // @ts-ignore add custom response property until https://github.com/octokit/request-error.js/issues/169 is resolved

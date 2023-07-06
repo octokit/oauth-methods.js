@@ -20,16 +20,16 @@ export type DeleteAuthorizationResponse =
   Endpoints["DELETE /applications/{client_id}/grant"]["response"];
 
 export async function deleteAuthorization(
-  options: DeleteAuthorizationOAuthAppOptions
+  options: DeleteAuthorizationOAuthAppOptions,
 ): Promise<DeleteAuthorizationResponse>;
 export async function deleteAuthorization(
-  options: DeleteAuthorizationGitHubAppOptions
+  options: DeleteAuthorizationGitHubAppOptions,
 ): Promise<DeleteAuthorizationResponse>;
 
 export async function deleteAuthorization(
   options:
     | DeleteAuthorizationOAuthAppOptions
-    | DeleteAuthorizationGitHubAppOptions
+    | DeleteAuthorizationGitHubAppOptions,
 ): Promise<any> {
   const request =
     options.request ||
@@ -46,6 +46,6 @@ export async function deleteAuthorization(
       },
       client_id: options.clientId,
       access_token: options.token,
-    }
+    },
   );
 }

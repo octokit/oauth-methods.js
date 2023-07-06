@@ -35,14 +35,14 @@ export type CheckTokenGitHubAppResponse =
   };
 
 export async function checkToken(
-  options: CheckTokenOAuthAppOptions
+  options: CheckTokenOAuthAppOptions,
 ): Promise<CheckTokenOAuthAppResponse>;
 export async function checkToken(
-  options: CheckTokenGitHubAppOptions
+  options: CheckTokenGitHubAppOptions,
 ): Promise<CheckTokenGitHubAppResponse>;
 
 export async function checkToken(
-  options: CheckTokenOAuthAppOptions | CheckTokenGitHubAppOptions
+  options: CheckTokenOAuthAppOptions | CheckTokenGitHubAppOptions,
 ): Promise<any> {
   const request =
     options.request ||
@@ -52,7 +52,7 @@ export async function checkToken(
   const response = await request("POST /applications/{client_id}/token", {
     headers: {
       authorization: `basic ${btoa(
-        `${options.clientId}:${options.clientSecret}`
+        `${options.clientId}:${options.clientSecret}`,
       )}`,
     },
     client_id: options.clientId,

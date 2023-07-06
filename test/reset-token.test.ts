@@ -21,7 +21,7 @@ describe("resetToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await resetToken({
@@ -79,7 +79,7 @@ describe("resetToken()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await resetToken({

@@ -35,10 +35,10 @@ export type GetWebFlowAuthorizationUrlOAuthAppResult = OAuthAppResult;
 export type GetWebFlowAuthorizationUrlGitHubAppResult = GitHubAppResult;
 
 export function getWebFlowAuthorizationUrl(
-  options: GetWebFlowAuthorizationUrlOAuthAppOptions
+  options: GetWebFlowAuthorizationUrlOAuthAppOptions,
 ): OAuthAppResult;
 export function getWebFlowAuthorizationUrl(
-  options: GetWebFlowAuthorizationUrlGitHubAppOptions
+  options: GetWebFlowAuthorizationUrlGitHubAppOptions,
 ): GitHubAppResult;
 
 export function getWebFlowAuthorizationUrl({

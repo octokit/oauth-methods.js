@@ -31,7 +31,7 @@ describe("refreshToken()", () => {
           grant_type: "refresh_token",
           refresh_token: "r1.refreshtoken123",
         },
-      }
+      },
     );
 
     const { data, authentication } = await refreshToken({

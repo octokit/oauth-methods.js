@@ -47,20 +47,20 @@ export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
  */
 export async function exchangeWebFlowCode(
-  options: ExchangeWebFlowCodeOAuthAppOptions
+  options: ExchangeWebFlowCodeOAuthAppOptions,
 ): Promise<ExchangeWebFlowCodeOAuthAppResponse>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. Note that `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeWebFlowCode(
-  options: ExchangeWebFlowCodeGitHubAppOptions
+  options: ExchangeWebFlowCodeGitHubAppOptions,
 ): Promise<ExchangeWebFlowCodeGitHubAppResponse>;
 
 export async function exchangeWebFlowCode(
   options:
     | ExchangeWebFlowCodeOAuthAppOptions
-    | ExchangeWebFlowCodeGitHubAppOptions
+    | ExchangeWebFlowCodeGitHubAppOptions,
 ): Promise<any> {
   const request =
     options.request ||
@@ -75,7 +75,7 @@ export async function exchangeWebFlowCode(
       client_secret: options.clientSecret,
       code: options.code,
       redirect_uri: options.redirectUrl,
-    }
+    },
   );
 
   const authentication: Record<string, unknown> = {
@@ -93,11 +93,11 @@ export async function exchangeWebFlowCode(
       (authentication.refreshToken = response.data.refresh_token),
         (authentication.expiresAt = toTimestamp(
           apiTimeInMs,
-          response.data.expires_in
+          response.data.expires_in,
         )),
         (authentication.refreshTokenExpiresAt = toTimestamp(
           apiTimeInMs,
-          response.data.refresh_token_expires_in
+          response.data.refresh_token_expires_in,
         ));
     }
 

@@ -27,7 +27,7 @@ describe("scopeToken()", () => {
           repositories: ["oauth-methods.js"],
           permissions: { issues: "write" },
         },
-      }
+      },
     );
 
     const { data, authentication } = await scopeToken({
@@ -81,7 +81,7 @@ describe("scopeToken()", () => {
           },
           expires_at: "2021-10-06T17:26:27Z",
           token: "usertoken456",
-        }
+        },
       );
 
     const { data, authentication } = await scopeToken({

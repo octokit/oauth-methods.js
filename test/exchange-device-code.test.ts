@@ -22,7 +22,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({
@@ -75,7 +75,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({
@@ -132,7 +132,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     expect(
@@ -149,9 +149,9 @@ describe("exchangeDeviceCode()", () => {
               fetch: mock,
             },
           }),
-        })
+        }),
     ).rejects.toMatchInlineSnapshot(
-      `[HttpError: error_description (authorization_pending, error_uri)]`
+      `[HttpError: error_description (authorization_pending, error_uri)]`,
     );
   });
 
@@ -174,7 +174,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({
@@ -229,7 +229,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({
@@ -281,7 +281,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({
@@ -343,7 +343,7 @@ describe("exchangeDeviceCode()", () => {
           device_code: "code123",
           grant_type: "urn:ietf:params:oauth:grant-type:device_code",
         },
-      }
+      },
     );
 
     const { data, authentication } = await exchangeDeviceCode({

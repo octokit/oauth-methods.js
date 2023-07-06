@@ -20,7 +20,7 @@ describe("deleteAuthorization()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const response = await deleteAuthorization({
@@ -66,7 +66,7 @@ describe("deleteAuthorization()", () => {
         body: {
           access_token: "token123",
         },
-      }
+      },
     );
 
     const response = await deleteAuthorization({
