@@ -43,7 +43,7 @@ describe("deleteToken()", () => {
         "data": undefined,
         "headers": {},
         "status": 204,
-        "url": "https://api.github.com/applications/1234567890abcdef1234/token",
+        "url": "",
       }
     `);
   });
@@ -95,7 +95,7 @@ describe("deleteToken()", () => {
           "content-type": "application/json",
         },
         "status": 200,
-        "url": "https://api.github.com/applications/lv1.1234567890abcdef/token",
+        "url": "",
       }
     `);
   });

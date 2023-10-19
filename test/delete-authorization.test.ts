@@ -43,7 +43,7 @@ describe("deleteAuthorization()", () => {
         "data": undefined,
         "headers": {},
         "status": 204,
-        "url": "https://api.github.com/applications/1234567890abcdef1234/grant",
+        "url": "",
       }
     `);
   });
@@ -95,7 +95,7 @@ describe("deleteAuthorization()", () => {
           "content-type": "application/json",
         },
         "status": 200,
-        "url": "https://api.github.com/applications/lv1.1234567890abcdef/grant",
+        "url": "",
       }
     `);
   });
