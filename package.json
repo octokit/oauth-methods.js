@@ -27,7 +27,7 @@
     "btoa-lite": "^1.0.0"
   },
   "devDependencies": {
-    "@octokit/tsconfig": "^2.0.0",
+    "@octokit/tsconfig": "^3.0.0",
     "@types/btoa-lite": "^1.0.0",
     "@types/jest": "^29.0.0",
     "@types/node": "^20.0.0",
