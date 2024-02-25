@@ -31,7 +31,6 @@ export async function oauthRequest(
           route,
           withOAuthParameters,
         ) as RequestOptions,
-        headers: response.headers,
       },
     );
 
