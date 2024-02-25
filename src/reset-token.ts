@@ -1,12 +1,11 @@
 import { request as defaultRequest } from "@octokit/request";
-import btoa from "btoa-lite";
 
 import type { Endpoints, RequestInterface } from "@octokit/types";
 import type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
-} from "./types";
+} from "./types.js";
 
 export type ResetTokenOAuthAppOptions = {
   clientType: "oauth-app";

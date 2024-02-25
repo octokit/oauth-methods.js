@@ -6,7 +6,7 @@ import type {
 import { request as defaultRequest } from "@octokit/request";
 import type { RequestInterface } from "@octokit/types";
 
-import { requestToOAuthBaseUrl } from "./utils";
+import { requestToOAuthBaseUrl } from "./utils.js";
 
 export type GetWebFlowAuthorizationUrlOAuthAppOptions = {
   clientType: "oauth-app";

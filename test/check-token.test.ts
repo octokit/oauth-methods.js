@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { checkToken } from "../src";
+import { checkToken } from "../src/index.js";
 
 describe("checkToken()", () => {
   it("README example", async () => {

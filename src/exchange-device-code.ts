@@ -9,8 +9,8 @@ import type {
   OAuthAppCreateTokenResponseData,
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
-} from "./types";
-import { oauthRequest } from "./utils";
+} from "./types.js";
+import { oauthRequest } from "./utils.js";
 
 export type ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret = {
   clientType: "oauth-app";

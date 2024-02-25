@@ -4,8 +4,8 @@ import type { OctokitResponse, RequestInterface } from "@octokit/types";
 import type {
   GitHubAppAuthenticationWithRefreshToken,
   GitHubAppCreateTokenWithExpirationResponseData,
-} from "./types";
-import { oauthRequest } from "./utils";
+} from "./types.js";
+import { oauthRequest } from "./utils.js";
 
 export type RefreshTokenOptions = {
   clientType: "github-app";

@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { exchangeWebFlowCode } from "../src";
+import { exchangeWebFlowCode } from "../src/index.js";
 
 describe("exchangeWebFlowCode()", () => {
   it("README example", async () => {

@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { exchangeDeviceCode } from "../src";
+import { exchangeDeviceCode } from "../src/index.js";
 
 describe("exchangeDeviceCode()", () => {
   it("README example", async () => {

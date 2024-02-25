@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { deleteToken } from "../src";
+import { deleteToken } from "../src/index.js";
 
 describe("deleteToken()", () => {
   it("README example", async () => {

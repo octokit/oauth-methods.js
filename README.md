@@ -57,7 +57,7 @@ Node
 Install with `npm install @octokit/core @octokit/oauth-methods`
 
 ```js
-const {
+import {
   exchangeWebFlowCode,
   createDeviceCode,
   exchangeDeviceCode,
@@ -67,7 +67,7 @@ const {
   resetToken,
   deleteToken,
   deleteAuthorization,
-} = require("@octokit/oauth-methods");
+} from "@octokit/oauth-methods";
 ```
 
 </td></tr>
@@ -248,7 +248,7 @@ Defaults to `[]`.
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { url } = getWebFlowAuthorizationUrl({
   clientType: "oauth-app",
   clientId: "1234567890abcdef1234",
@@ -470,7 +470,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await exchangeWebFlowCode({
   clientType: "oauth-app",
   clientId: "1234567890abcdef1234",
@@ -564,7 +564,7 @@ Array of [scope names](https://docs.github.com/en/developers/apps/scopes-for-oau
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data } = await createDeviceCode({
   clientType: "oauth-app",
   clientId: "1234567890abcdef1234",
@@ -651,7 +651,7 @@ const { data, authentication } = await exchangeDeviceCode({
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await exchangeDeviceCode({
   clientType: "oauth-app",
   clientId: "1234567890abcdef1234",
@@ -750,7 +750,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await checkToken({
   clientType: "oauth-app",
   clientId: "1234567890abcdef1234",
@@ -856,7 +856,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await refreshToken({
   clientType: "github-app",
   clientId: "lv1.1234567890abcdef",
@@ -1007,7 +1007,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await scopeToken({
   clientType: "github-app",
   clientId: "lv1.1234567890abcdef",
@@ -1113,7 +1113,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await resetToken({
   clientId: "1234567890abcdef1234",
   clientSecret: "secret",
@@ -1214,7 +1214,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await deleteToken({
   clientId: "1234567890abcdef1234",
   clientSecret: "secret",
@@ -1315,7 +1315,7 @@ Options
         You can pass in your own <a href="https://github.com/octokit/request.js"><code>@octokit/request</code></a> instance. For usage with enterprise, set <code>baseUrl</code> to the REST API root endpoint. Example:
 
 ```js
-const { request } = require("@octokit/request");
+import { request } from "@octokit/request";
 const { data, authentication } = await deleteAuthorization({
   clientId: "1234567890abcdef1234",
   clientSecret: "secret",

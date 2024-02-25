@@ -35,14 +35,13 @@ async function main() {
 
   const entryPoints = ["./pkg/dist-src/index.js"];
 
-  // Build a CJS Node.js bundle
+  // Build a bundle
   await esbuild.build({
     entryPoints,
-    outdir: "pkg/dist-node",
+    outdir: "pkg/dist-bundle",
     bundle: true,
-    platform: "node",
-    target: "node14",
-    format: "cjs",
+    platform: "neutral",
+    format: "esm",
     ...sharedOptions,
   });
 
@@ -63,9 +62,12 @@ async function main() {
       {
         ...pkg,
         files: ["dist-*/**", "bin/**"],
-        main: "dist-node/index.js",
-        types: "dist-types/index.d.ts",
-        module: "dist-src/index.js",
+        exports: {
+          ".": {
+            types: "./dist-types/index.d.ts",
+            import: "./dist-bundle/index.js",
+          },
+        },
         sideEffects: false,
       },
       null,

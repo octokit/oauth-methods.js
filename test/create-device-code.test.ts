@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { createDeviceCode } from "../src";
+import { createDeviceCode } from "../src/index.js";
 
 describe("createDeviceCode()", () => {
   it("README example", async () => {
