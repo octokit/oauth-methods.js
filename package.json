@@ -21,7 +21,7 @@
   "author": "Gregor Martynus (https://dev.to/gr2m)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/oauth-authorization-url": "^7.0.0-beta.1",
+    "@octokit/oauth-authorization-url": "^7.0.0",
     "@octokit/request": "^9.0.0",
     "@octokit/request-error": "^6.0.0",
     "@octokit/types": "^12.0.0"
