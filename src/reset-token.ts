@@ -6,7 +6,7 @@ import type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
-} from "./types";
+} from "./types.js";
 
 export type ResetTokenOAuthAppOptions = {
   clientType: "oauth-app";

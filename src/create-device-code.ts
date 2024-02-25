@@ -1,7 +1,7 @@
 import { request as defaultRequest } from "@octokit/request";
 import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
-import { oauthRequest } from "./utils";
+import { oauthRequest } from "./utils.js";
 
 export type CreateDeviceCodeOAuthAppOptions = {
   clientType: "oauth-app";

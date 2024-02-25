@@ -1,14 +1,14 @@
-export { VERSION } from "./version";
-export * from "./get-web-flow-authorization-url";
-export * from "./exchange-web-flow-code";
-export * from "./create-device-code";
-export * from "./exchange-device-code";
-export * from "./check-token";
-export * from "./refresh-token";
-export * from "./scope-token";
-export * from "./reset-token";
-export * from "./delete-token";
-export * from "./delete-authorization";
+export { VERSION } from "./version.js";
+export * from "./get-web-flow-authorization-url.js";
+export * from "./exchange-web-flow-code.js";
+export * from "./create-device-code.js";
+export * from "./exchange-device-code.js";
+export * from "./check-token.js";
+export * from "./refresh-token.js";
+export * from "./scope-token.js";
+export * from "./reset-token.js";
+export * from "./delete-token.js";
+export * from "./delete-authorization.js";
 export type {
   OAuthAppAuthentication,
   GitHubAppAuthenticationWithExpirationDisabled,
@@ -16,4 +16,4 @@ export type {
   GitHubAppAuthenticationWithRefreshToken,
   GitHubAppAuthentication,
   GitHubAppAuthenticationWithExpiration,
-} from "./types";
+} from "./types.js";

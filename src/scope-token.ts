@@ -5,7 +5,7 @@ import btoa from "btoa-lite";
 import type {
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
-} from "./types";
+} from "./types.js";
 
 type CommonOptions = {
   clientType: "github-app";

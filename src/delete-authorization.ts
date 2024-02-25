@@ -1,6 +1,5 @@
 import { request as defaultRequest } from "@octokit/request";
 import type { RequestInterface, Endpoints } from "@octokit/types";
-import btoa from "btoa-lite";
 
 export type DeleteAuthorizationOAuthAppOptions = {
   clientType: "oauth-app";
