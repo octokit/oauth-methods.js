@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { scopeToken } from "../src";
+import { scopeToken } from "../src/index.js";
 
 describe("scopeToken()", () => {
   it("README example", async () => {

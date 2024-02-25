@@ -10,7 +10,7 @@ import {
   deleteToken,
   deleteAuthorization,
   VERSION,
-} from "../src";
+} from "../src/index.js";
 
 describe("Smoke test", () => {
   it("exports getWebFlowAuthorizationUrl", () => {

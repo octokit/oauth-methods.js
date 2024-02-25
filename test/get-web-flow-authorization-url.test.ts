@@ -1,5 +1,5 @@
 import { request } from "@octokit/request";
-import { getWebFlowAuthorizationUrl } from "../src";
+import { getWebFlowAuthorizationUrl } from "../src/index.js";
 
 describe("getWebFlowAuthorizationUrl()", () => {
   it("README example", () => {

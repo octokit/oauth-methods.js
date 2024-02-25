@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { deleteAuthorization } from "../src";
+import { deleteAuthorization } from "../src/index.js";
 
 describe("deleteAuthorization()", () => {
   it("README example", async () => {

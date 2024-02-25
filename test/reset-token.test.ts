@@ -1,6 +1,6 @@
 import fetchMock from "fetch-mock";
 import { request } from "@octokit/request";
-import { resetToken } from "../src";
+import { resetToken } from "../src/index.js";
 
 describe("resetToken()", () => {
   it("README example", async () => {
