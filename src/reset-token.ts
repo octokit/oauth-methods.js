@@ -1,5 +1,4 @@
 import { request as defaultRequest } from "@octokit/request";
-import btoa from "btoa-lite";
 
 import type { Endpoints, RequestInterface } from "@octokit/types";
 import type {
