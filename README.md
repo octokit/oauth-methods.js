@@ -637,7 +637,7 @@ const { data, authentication } = await exchangeDeviceCode({
         <code>string</code>
       </th>
       <td>
-        <strong>Required</strong>. The <code>decive_code</code> from the <code>createDeviceCode()</code> response
+        <strong>Required</strong>. The <code>device_code</code> from the <code>createDeviceCode()</code> response
       </td>
     </tr>
     <tr>
