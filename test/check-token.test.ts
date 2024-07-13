@@ -1,4 +1,5 @@
 import fetchMock from "fetch-mock";
+import { describe, it, expect } from "vitest";
 import { request } from "@octokit/request";
 import { checkToken } from "../src/index.js";
 
