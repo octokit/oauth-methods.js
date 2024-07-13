@@ -26,10 +26,8 @@ export type CreateDeviceCodeDeviceTokenResponse = OctokitResponse<{
 export async function createDeviceCode(
   options: CreateDeviceCodeOAuthAppOptions | CreateDeviceCodeGitHubAppOptions,
 ): Promise<CreateDeviceCodeDeviceTokenResponse> {
-  const request =
-    options.request ||
-    /* istanbul ignore next: we always pass a custom request in tests */
-    defaultRequest;
+  /* v8 ignore next 1: we always pass a custom request in tests */
+  const request = options.request || defaultRequest;
 
   const parameters: Record<string, unknown> = {
     client_id: options.clientId,

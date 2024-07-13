@@ -29,10 +29,8 @@ export async function deleteToken(
 export async function deleteToken(
   options: DeleteTokenOAuthAppOptions | DeleteTokenGitHubAppOptions,
 ): Promise<any> {
-  const request =
-    options.request ||
-    /* istanbul ignore next: we always pass a custom request in tests */
-    defaultRequest;
+  /* v8 ignore next 1: we always pass a custom request in tests */
+  const request = options.request || defaultRequest;
 
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
   return request(

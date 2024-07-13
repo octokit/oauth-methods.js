@@ -54,10 +54,8 @@ export async function scopeToken(
     ...requestOptions
   } = options;
 
-  const request =
-    optionsRequest ||
-    /* istanbul ignore next: we always pass a custom request in tests */
-    defaultRequest;
+  /* v8 ignore next 1: we always pass a custom request in tests */
+  const request = optionsRequest || defaultRequest;
 
   const response = await request(
     "POST /applications/{client_id}/token/scoped",

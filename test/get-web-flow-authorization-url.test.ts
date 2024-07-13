@@ -1,4 +1,5 @@
 import { request } from "@octokit/request";
+import { describe, it, expect } from "vitest";
 import { getWebFlowAuthorizationUrl } from "../src/index.js";
 
 describe("getWebFlowAuthorizationUrl()", () => {
