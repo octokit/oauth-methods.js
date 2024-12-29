@@ -27,9 +27,7 @@ export async function createDeviceCode(
   options: CreateDeviceCodeOAuthAppOptions | CreateDeviceCodeGitHubAppOptions,
 ): Promise<CreateDeviceCodeDeviceTokenResponse> {
   /* v8 ignore start: we always pass a custom request in tests */
-  const request =
-    options.request ||
-    defaultRequest;
+  const request = options.request || defaultRequest;
   /* v8 ignore stop */
 
   const parameters: Record<string, unknown> = {

@@ -55,9 +55,7 @@ export async function scopeToken(
   } = options;
 
   /* v8 ignore start: we always pass a custom request in tests */
-  const request =
-    options.request ||
-    defaultRequest;
+  const request = options.request || defaultRequest;
   /* v8 ignore stop */
 
   const response = await request(

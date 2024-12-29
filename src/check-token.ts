@@ -44,9 +44,7 @@ export async function checkToken(
   options: CheckTokenOAuthAppOptions | CheckTokenGitHubAppOptions,
 ): Promise<any> {
   /* v8 ignore start: we always pass a custom request in tests */
-  const request =
-    options.request ||
-    defaultRequest;
+  const request = options.request || defaultRequest;
   /* v8 ignore stop */
 
   const response = await request("POST /applications/{client_id}/token", {
