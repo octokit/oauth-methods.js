@@ -43,10 +43,11 @@ export async function resetToken(
 export async function resetToken(
   options: ResetTokenOAuthAppOptions | ResetTokenGitHubAppOptions,
 ): Promise<any> {
+  /* v8 ignore start: we always pass a custom request in tests */
   const request =
     options.request ||
-    /* istanbul ignore next: we always pass a custom request in tests */
     defaultRequest;
+  /* v8 ignore stop */
 
   const auth = btoa(`${options.clientId}:${options.clientSecret}`);
   const response = await request(
