@@ -41,7 +41,7 @@ describe("deleteToken()", () => {
 
     expect(response).toMatchInlineSnapshot(`
       {
-        "data": "",
+        "data": undefined,
         "headers": {},
         "status": 204,
         "url": "",
