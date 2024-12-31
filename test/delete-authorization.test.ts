@@ -40,7 +40,7 @@ describe("deleteAuthorization()", () => {
 
     expect(response).toMatchInlineSnapshot(`
       {
-        "data": undefined,
+        "data": "",
         "headers": {},
         "status": 204,
         "url": "",
