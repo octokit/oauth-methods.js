@@ -22,9 +22,9 @@
   "license": "MIT",
   "dependencies": {
     "@octokit/oauth-authorization-url": "^7.0.0",
-    "@octokit/request": "^9.1.0",
-    "@octokit/request-error": "^6.1.0",
-    "@octokit/types": "^13.0.0"
+    "@octokit/request": "^9.1.4",
+    "@octokit/request-error": "^6.1.6",
+    "@octokit/types": "^13.6.2"
   },
   "devDependencies": {
     "@octokit/tsconfig": "^3.0.0",
