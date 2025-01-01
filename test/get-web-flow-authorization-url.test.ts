@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { request } from "@octokit/request";
 import { getWebFlowAuthorizationUrl } from "../src/index.js";
 
