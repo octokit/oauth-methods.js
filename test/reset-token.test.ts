@@ -5,7 +5,7 @@ import { resetToken } from "../src/index.js";
 
 describe("resetToken()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().patchOnce(
+    const mock = fetchMock.createInstance().patchOnce(
       "https://api.github.com/applications/1234567890abcdef1234/token",
       {
         scopes: ["repo"],
@@ -35,7 +35,7 @@ describe("resetToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -62,7 +62,7 @@ describe("resetToken()", () => {
   });
 
   it("GitHub Example", async () => {
-    const mock = fetchMock.sandbox().patchOnce(
+    const mock = fetchMock.createInstance().patchOnce(
       "https://api.github.com/applications/lv1.1234567890abcdef/token",
       {
         expires_at: "2021-10-06T17:26:27Z",
@@ -93,7 +93,7 @@ describe("resetToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });

@@ -5,7 +5,7 @@ import { deleteToken } from "../src/index.js";
 
 describe("deleteToken()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().deleteOnce(
+    const mock = fetchMock.createInstance().deleteOnce(
       "https://api.github.com/applications/1234567890abcdef1234/token",
       {
         status: 204,
@@ -34,7 +34,7 @@ describe("deleteToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -50,7 +50,7 @@ describe("deleteToken()", () => {
   });
 
   it("GitHub App", async () => {
-    const mock = fetchMock.sandbox().deleteOnce(
+    const mock = fetchMock.createInstance().deleteOnce(
       "https://api.github.com/applications/lv1.1234567890abcdef/token",
       {
         scopes: [],
@@ -80,7 +80,7 @@ describe("deleteToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
