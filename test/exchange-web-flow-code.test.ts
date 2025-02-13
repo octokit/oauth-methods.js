@@ -5,7 +5,7 @@ import { exchangeWebFlowCode } from "../src/index.js";
 
 describe("exchangeWebFlowCode()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -36,7 +36,7 @@ describe("exchangeWebFlowCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -60,7 +60,7 @@ describe("exchangeWebFlowCode()", () => {
   });
 
   it("with scopes", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -91,7 +91,7 @@ describe("exchangeWebFlowCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -118,7 +118,7 @@ describe("exchangeWebFlowCode()", () => {
   });
 
   it("All options for OAuth Apps", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://ghe.acme-inc.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -152,7 +152,7 @@ describe("exchangeWebFlowCode()", () => {
         },
         baseUrl: "https://ghe.acme-inc.com/api/v3",
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -176,7 +176,7 @@ describe("exchangeWebFlowCode()", () => {
   });
 
   it("All options for GitHub Apps", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://ghe.acme-inc.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -210,7 +210,7 @@ describe("exchangeWebFlowCode()", () => {
         },
         baseUrl: "https://ghe.acme-inc.com/api/v3",
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -233,7 +233,7 @@ describe("exchangeWebFlowCode()", () => {
   });
 
   it("Refresh token", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://ghe.acme-inc.com/login/oauth/access_token",
       {
         body: {
@@ -273,7 +273,7 @@ describe("exchangeWebFlowCode()", () => {
         },
         baseUrl: "https://ghe.acme-inc.com/api/v3",
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
