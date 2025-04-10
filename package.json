@@ -22,12 +22,12 @@
   "license": "MIT",
   "dependencies": {
     "@octokit/oauth-authorization-url": "^7.0.0",
-    "@octokit/request": "^9.2.1",
-    "@octokit/request-error": "^6.1.7",
-    "@octokit/types": "^13.6.2"
+    "@octokit/request": "^9.2.3",
+    "@octokit/request-error": "^6.1.8",
+    "@octokit/types": "^14.0.0"
   },
   "devDependencies": {
-    "@octokit/tsconfig": "^3.0.0",
+    "@octokit/tsconfig": "^4.0.0",
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^3.0.0",
     "esbuild": "^0.25.0",

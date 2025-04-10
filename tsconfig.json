@@ -1,6 +1,7 @@
 {
   "extends": "@octokit/tsconfig",
   "compilerOptions": {
+    "exactOptionalPropertyTypes": false,
     "esModuleInterop": true,
     "declaration": true,
     "outDir": "pkg/dist-types",
