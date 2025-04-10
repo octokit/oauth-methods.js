@@ -22,8 +22,8 @@
   "license": "MIT",
   "dependencies": {
     "@octokit/oauth-authorization-url": "^7.0.0",
-    "@octokit/request": "^9.2.1",
-    "@octokit/request-error": "^6.1.7",
+    "@octokit/request": "^9.2.3",
+    "@octokit/request-error": "^6.1.8",
     "@octokit/types": "^14.0.0"
   },
   "devDependencies": {
