@@ -5,7 +5,7 @@ import { exchangeDeviceCode } from "../src/index.js";
 
 describe("exchangeDeviceCode()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -35,7 +35,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -58,7 +58,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("with scopes", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -89,7 +89,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -115,7 +115,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("authorization_pending error", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         error: "authorization_pending",
@@ -147,7 +147,7 @@ describe("exchangeDeviceCode()", () => {
               "user-agent": "test",
             },
             request: {
-              fetch: mock,
+              fetch: mock.fetchHandler,
             },
           }),
         }),
@@ -157,7 +157,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("OAuth App with ClientSecret", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -188,7 +188,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -212,7 +212,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("GitHub App", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -242,7 +242,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -264,7 +264,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("GitHub App with clientSecret", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         access_token: "secret123",
@@ -295,7 +295,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -318,7 +318,7 @@ describe("exchangeDeviceCode()", () => {
   });
 
   it("Refresh token", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         body: {
@@ -356,7 +356,7 @@ describe("exchangeDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
