@@ -5,7 +5,7 @@ import { refreshToken } from "../src/index.js";
 
 describe("refreshToken()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/oauth/access_token",
       {
         body: {
@@ -45,7 +45,7 @@ describe("refreshToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
