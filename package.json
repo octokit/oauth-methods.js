@@ -21,9 +21,9 @@
   "author": "Gregor Martynus (https://dev.to/gr2m)",
   "license": "MIT",
   "dependencies": {
-    "@octokit/oauth-authorization-url": "^7.0.0",
-    "@octokit/request": "^9.2.3",
-    "@octokit/request-error": "^6.1.8",
+    "@octokit/oauth-authorization-url": "^8.0.0",
+    "@octokit/request": "^10.0.2",
+    "@octokit/request-error": "^7.0.0",
     "@octokit/types": "^14.0.0"
   },
   "devDependencies": {
@@ -66,6 +66,6 @@
     "provenance": true
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20"
   }
 }
