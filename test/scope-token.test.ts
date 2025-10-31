@@ -5,7 +5,7 @@ import { scopeToken } from "../src/index.js";
 
 describe("scopeToken()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://api.github.com/applications/lv1.1234567890abcdef/token/scoped",
       {
         account: {
@@ -46,7 +46,7 @@ describe("scopeToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -72,7 +72,7 @@ describe("scopeToken()", () => {
 
   it("passes `expires_at` through", async () => {
     const mock = fetchMock
-      .sandbox()
+      .createInstance()
       .postOnce(
         "https://api.github.com/applications/lv1.1234567890abcdef/token/scoped",
         {
@@ -100,7 +100,7 @@ describe("scopeToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });

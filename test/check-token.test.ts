@@ -5,7 +5,7 @@ import { checkToken } from "../src/index.js";
 
 describe("checkToken()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://api.github.com/applications/1234567890abcdef1234/token",
       {
         scopes: ["repo"],
@@ -34,7 +34,7 @@ describe("checkToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -60,7 +60,7 @@ describe("checkToken()", () => {
   });
 
   it("GitHub Example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://api.github.com/applications/lv1.1234567890abcdef/token",
       {
         expires_at: "2021-10-06T17:26:27Z",
@@ -90,7 +90,7 @@ describe("checkToken()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });

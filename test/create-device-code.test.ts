@@ -5,7 +5,7 @@ import { createDeviceCode } from "../src/index.js";
 
 describe("createDeviceCode()", () => {
   it("README example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/device/code",
       {
         device_code: "devicecode123",
@@ -36,7 +36,7 @@ describe("createDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
@@ -53,7 +53,7 @@ describe("createDeviceCode()", () => {
   });
 
   it("GitHub App example", async () => {
-    const mock = fetchMock.sandbox().postOnce(
+    const mock = fetchMock.createInstance().postOnce(
       "https://github.com/login/device/code",
       {
         device_code: "devicecode123",
@@ -82,7 +82,7 @@ describe("createDeviceCode()", () => {
           "user-agent": "test",
         },
         request: {
-          fetch: mock,
+          fetch: mock.fetchHandler,
         },
       }),
     });
