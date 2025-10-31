@@ -147,7 +147,7 @@ export async function exchangeDeviceCode(
     if ("refresh_token" in response.data) {
       const apiTimeInMs = new Date(response.headers.date as string).getTime();
 
-      (authentication.refreshToken = response.data.refresh_token),
+      ((authentication.refreshToken = response.data.refresh_token),
         (authentication.expiresAt = toTimestamp(
           apiTimeInMs,
           response.data.expires_in,
@@ -155,7 +155,7 @@ export async function exchangeDeviceCode(
         (authentication.refreshTokenExpiresAt = toTimestamp(
           apiTimeInMs,
           response.data.refresh_token_expires_in,
-        ));
+        )));
     }
 
     delete authentication.scopes;
