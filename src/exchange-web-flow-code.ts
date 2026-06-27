@@ -59,8 +59,7 @@ export async function exchangeWebFlowCode(
 
 export async function exchangeWebFlowCode(
   options:
-    | ExchangeWebFlowCodeOAuthAppOptions
-    | ExchangeWebFlowCodeGitHubAppOptions,
+    ExchangeWebFlowCodeOAuthAppOptions | ExchangeWebFlowCodeGitHubAppOptions,
 ): Promise<any> {
   /* v8 ignore next: we always pass a custom request in tests -- @preserve */
   const request = options.request || defaultRequest;
