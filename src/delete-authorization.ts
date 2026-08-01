@@ -27,8 +27,7 @@ export async function deleteAuthorization(
 
 export async function deleteAuthorization(
   options:
-    | DeleteAuthorizationOAuthAppOptions
-    | DeleteAuthorizationGitHubAppOptions,
+    DeleteAuthorizationOAuthAppOptions | DeleteAuthorizationGitHubAppOptions,
 ): Promise<any> {
   /* v8 ignore next: we always pass a custom request in tests -- @preserve */
   const request = options.request || defaultRequest;
