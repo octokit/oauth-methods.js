@@ -3,6 +3,7 @@ import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import type {
   GitHubAppAuthenticationWithRefreshToken,
+  GitHubAppAuthenticationWithRefreshTokenOIDC,
   GitHubAppCreateTokenWithExpirationResponseData,
 } from "./types.js";
 import { oauthRequest } from "./utils.js";
@@ -12,6 +13,7 @@ export type RefreshTokenOptions = {
   clientId: string;
   clientSecret: string;
   refreshToken: string;
+  oidcCompliant?: boolean;
   request?: RequestInterface;
 };
 
@@ -20,9 +22,22 @@ export type RefreshTokenResponse =
     authentication: GitHubAppAuthenticationWithRefreshToken;
   };
 
+export type RefreshTokenResponseOIDC =
+  OctokitResponse<GitHubAppCreateTokenWithExpirationResponseData> & {
+    authentication: GitHubAppAuthenticationWithRefreshTokenOIDC;
+  };
+
+export async function refreshToken(
+  options: RefreshTokenOptions & { oidcCompliant: true },
+): Promise<RefreshTokenResponseOIDC>;
+
 export async function refreshToken(
   options: RefreshTokenOptions,
-): Promise<RefreshTokenResponse> {
+): Promise<RefreshTokenResponse>;
+
+export async function refreshToken(
+  options: RefreshTokenOptions,
+): Promise<any> {
   /* v8 ignore next: we always pass a custom request in tests -- @preserve */
   const request = options.request || defaultRequest;
 
@@ -36,6 +51,10 @@ export async function refreshToken(
       refresh_token: options.refreshToken,
     },
   );
+
+  if (options.oidcCompliant) {
+    return { ...response, authentication: response.data };
+  }
 
   const apiTimeInMs = new Date(response.headers.date as string).getTime();
   const authentication: GitHubAppAuthenticationWithRefreshToken = {

@@ -11,9 +11,12 @@ export * from "./delete-token.js";
 export * from "./delete-authorization.js";
 export type {
   OAuthAppAuthentication,
+  OAuthAppAuthenticationOIDC,
   GitHubAppAuthenticationWithExpirationDisabled,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithRefreshToken,
+  GitHubAppAuthenticationOIDC,
+  GitHubAppAuthenticationWithRefreshTokenOIDC,
   GitHubAppAuthentication,
   GitHubAppAuthenticationWithExpiration,
 } from "./types.js";

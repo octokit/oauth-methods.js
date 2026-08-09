@@ -3,9 +3,12 @@ import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import type {
   OAuthAppAuthentication,
+  OAuthAppAuthenticationOIDC,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
   GitHubAppAuthenticationWithRefreshToken,
+  GitHubAppAuthenticationOIDC,
+  GitHubAppAuthenticationWithRefreshTokenOIDC,
   OAuthAppCreateTokenResponseData,
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
@@ -18,6 +21,7 @@ export type ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret = {
   code: string;
   redirectUrl?: string;
   state?: string;
+  oidcCompliant?: boolean;
   request?: RequestInterface;
   scopes?: string[];
 };
@@ -31,6 +35,7 @@ export type ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret = {
   code: string;
   redirectUrl?: string;
   state?: string;
+  oidcCompliant?: boolean;
   request?: RequestInterface;
 };
 
@@ -58,6 +63,11 @@ export type ExchangeDeviceCodeOAuthAppResponse =
     authentication: OAuthAppAuthentication;
   };
 
+export type ExchangeDeviceCodeOAuthAppResponseOIDC =
+  OctokitResponse<OAuthAppCreateTokenResponseData> & {
+    authentication: OAuthAppAuthenticationOIDC;
+  };
+
 export type ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret =
   OctokitResponse<OAuthAppCreateTokenResponseData> & {
     authentication: OAuthAppAuthenticationWithoutClientSecret;
@@ -73,6 +83,13 @@ export type ExchangeDeviceCodeGitHubAppResponse = OctokitResponse<
     | GitHubAppAuthenticationWithRefreshToken;
 };
 
+export type ExchangeDeviceCodeGitHubAppResponseOIDC = OctokitResponse<
+  | GitHubAppCreateTokenResponseData
+  | GitHubAppCreateTokenWithExpirationResponseData
+> & {
+  authentication: GitHubAppAuthenticationOIDC | GitHubAppAuthenticationWithRefreshTokenOIDC;
+};
+
 export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret =
   OctokitResponse<
     | GitHubAppCreateTokenResponseData
@@ -84,28 +101,60 @@ export type ExchangeDeviceCodeGitHubAppResponseWithoutClientSecret =
   };
 
 /**
- * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
+ * Exchange the code from GitHub's Device flow for OAuth Apps.
+ */
+export async function exchangeDeviceCode(
+  options: ExchangeDeviceCodeOAuthAppOptions & { oidcCompliant: true },
+): Promise<ExchangeDeviceCodeOAuthAppResponseOIDC>;
+
+/**
+ * Exchange the code from GitHub's Device flow for OAuth Apps.
  */
 export async function exchangeDeviceCode(
   options: ExchangeDeviceCodeOAuthAppOptions,
 ): Promise<ExchangeDeviceCodeOAuthAppResponse>;
 
 /**
- * Exchange the code from GitHub's OAuth Web flow for OAuth Apps without clientSecret
+ * Exchange the code from GitHub's Device flow for OAuth Apps without clientSecret
+ */
+export async function exchangeDeviceCode(
+  options: ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret & {
+    oidcCompliant: true;
+  },
+): Promise<ExchangeDeviceCodeOAuthAppResponseOIDC>;
+
+/**
+ * Exchange the code from GitHub's Device flow for OAuth Apps without clientSecret
  */
 export async function exchangeDeviceCode(
   options: ExchangeDeviceCodeOAuthAppOptionsWithoutClientSecret,
 ): Promise<ExchangeDeviceCodeOAuthAppResponseWithoutClientSecret>;
 
 /**
- * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. `scopes` are not supported by GitHub Apps.
+ * Exchange the code from GitHub's Device flow for GitHub Apps. `scopes` are not supported by GitHub Apps.
+ */
+export async function exchangeDeviceCode(
+  options: ExchangeDeviceCodeGitHubAppOptions & { oidcCompliant: true },
+): Promise<ExchangeDeviceCodeGitHubAppResponseOIDC>;
+
+/**
+ * Exchange the code from GitHub's Device flow for GitHub Apps. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
   options: ExchangeDeviceCodeGitHubAppOptions,
 ): Promise<ExchangeDeviceCodeGitHubAppResponse>;
 
 /**
- * Exchange the code from GitHub's OAuth Web flow for GitHub Apps without using `clientSecret`. `scopes` are not supported by GitHub Apps.
+ * Exchange the code from GitHub's Device flow for GitHub Apps without using `clientSecret`. `scopes` are not supported by GitHub Apps.
+ */
+export async function exchangeDeviceCode(
+  options: ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret & {
+    oidcCompliant: true;
+  },
+): Promise<ExchangeDeviceCodeGitHubAppResponseOIDC>;
+
+/**
+ * Exchange the code from GitHub's Device flow for GitHub Apps without using `clientSecret`. `scopes` are not supported by GitHub Apps.
  */
 export async function exchangeDeviceCode(
   options: ExchangeDeviceCodeGitHubAppOptionsWithoutClientSecret,
@@ -130,6 +179,10 @@ export async function exchangeDeviceCode(
       grant_type: "urn:ietf:params:oauth:grant-type:device_code",
     },
   );
+
+  if (options.oidcCompliant) {
+    return { ...response, authentication: response.data };
+  }
 
   const authentication: Record<string, unknown> = {
     clientType: options.clientType,

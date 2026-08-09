@@ -382,4 +382,141 @@ describe("exchangeDeviceCode()", () => {
       }
     `);
   });
+
+  it("oidcCompliant: OAuth App", async () => {
+    const mock = fetchMock.sandbox().postOnce(
+      "https://github.com/login/oauth/access_token",
+      {
+        access_token: "secret123",
+        scope: "repo gist",
+        token_type: "bearer",
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "user-agent": "test",
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: {
+          client_id: "1234567890abcdef1234",
+          device_code: "code123",
+          grant_type: "urn:ietf:params:oauth:grant-type:device_code",
+        },
+      },
+    );
+
+    const { authentication } = await exchangeDeviceCode({
+      clientType: "oauth-app",
+      clientId: "1234567890abcdef1234",
+      code: "code123",
+      oidcCompliant: true,
+      request: request.defaults({
+        headers: { "user-agent": "test" },
+        request: { fetch: mock },
+      }),
+    });
+
+    expect(authentication).toMatchInlineSnapshot(`
+      {
+        "access_token": "secret123",
+        "scope": "repo gist",
+        "token_type": "bearer",
+      }
+    `);
+  });
+
+  it("oidcCompliant: GitHub App without expiration", async () => {
+    const mock = fetchMock.sandbox().postOnce(
+      "https://github.com/login/oauth/access_token",
+      {
+        access_token: "secret123",
+        scope: "",
+        token_type: "bearer",
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "user-agent": "test",
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: {
+          client_id: "lv1.1234567890abcdef",
+          device_code: "code123",
+          grant_type: "urn:ietf:params:oauth:grant-type:device_code",
+        },
+      },
+    );
+
+    const { authentication } = await exchangeDeviceCode({
+      clientType: "github-app",
+      clientId: "lv1.1234567890abcdef",
+      code: "code123",
+      oidcCompliant: true,
+      request: request.defaults({
+        headers: { "user-agent": "test" },
+        request: { fetch: mock },
+      }),
+    });
+
+    expect(authentication).toMatchInlineSnapshot(`
+      {
+        "access_token": "secret123",
+        "scope": "",
+        "token_type": "bearer",
+      }
+    `);
+  });
+
+  it("oidcCompliant: GitHub App with refresh token", async () => {
+    const mock = fetchMock.sandbox().postOnce(
+      "https://github.com/login/oauth/access_token",
+      {
+        body: {
+          access_token: "secret123",
+          scope: "",
+          token_type: "bearer",
+          expires_in: 28800,
+          refresh_token: "r1.token123",
+          refresh_token_expires_in: 15897600,
+        },
+        headers: {
+          date: "Thu, 1 Jan 1970 00:00:00 GMT",
+        },
+      },
+      {
+        headers: {
+          accept: "application/json",
+          "user-agent": "test",
+          "content-type": "application/json; charset=utf-8",
+        },
+        body: {
+          client_id: "lv1.1234567890abcdef",
+          device_code: "code123",
+          grant_type: "urn:ietf:params:oauth:grant-type:device_code",
+        },
+      },
+    );
+
+    const { authentication } = await exchangeDeviceCode({
+      clientType: "github-app",
+      clientId: "lv1.1234567890abcdef",
+      code: "code123",
+      oidcCompliant: true,
+      request: request.defaults({
+        headers: { "user-agent": "test" },
+        request: { fetch: mock },
+      }),
+    });
+
+    expect(authentication).toMatchInlineSnapshot(`
+      {
+        "access_token": "secret123",
+        "expires_in": 28800,
+        "refresh_token": "r1.token123",
+        "refresh_token_expires_in": 15897600,
+        "scope": "",
+        "token_type": "bearer",
+      }
+    `);
+  });
 });

@@ -62,3 +62,25 @@ export type GitHubAppCreateTokenWithExpirationResponseData = {
   refresh_token: string;
   refresh_token_expires_in: number;
 };
+
+/**
+ * Authentication object returned when `oidcCompliant: true` is passed.
+ * Contains the raw fields from GitHub's OAuth token response, conforming to
+ * OIDC specifications (RFC 8693).
+ */
+export type OAuthAppAuthenticationOIDC = OAuthAppCreateTokenResponseData;
+
+/**
+ * Authentication object returned when `oidcCompliant: true` is passed for a
+ * GitHub App without token expiration. Contains the raw fields from GitHub's
+ * OAuth token response, conforming to OIDC specifications (RFC 8693).
+ */
+export type GitHubAppAuthenticationOIDC = GitHubAppCreateTokenResponseData;
+
+/**
+ * Authentication object returned when `oidcCompliant: true` is passed for a
+ * GitHub App with token expiration. Contains the raw fields from GitHub's
+ * OAuth token response, conforming to OIDC specifications (RFC 8693).
+ */
+export type GitHubAppAuthenticationWithRefreshTokenOIDC =
+  GitHubAppCreateTokenWithExpirationResponseData;

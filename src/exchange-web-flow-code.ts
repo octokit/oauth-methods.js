@@ -3,9 +3,12 @@ import type { OctokitResponse, RequestInterface } from "@octokit/types";
 
 import type {
   OAuthAppAuthentication,
+  OAuthAppAuthenticationOIDC,
   GitHubAppAuthenticationWithExpirationEnabled,
   GitHubAppAuthenticationWithExpirationDisabled,
   GitHubAppAuthenticationWithRefreshToken,
+  GitHubAppAuthenticationOIDC,
+  GitHubAppAuthenticationWithRefreshTokenOIDC,
   OAuthAppCreateTokenResponseData,
   GitHubAppCreateTokenResponseData,
   GitHubAppCreateTokenWithExpirationResponseData,
@@ -18,6 +21,7 @@ export type ExchangeWebFlowCodeOAuthAppOptions = {
   clientSecret: string;
   code: string;
   redirectUrl?: string;
+  oidcCompliant?: boolean;
   request?: RequestInterface;
 };
 export type ExchangeWebFlowCodeGitHubAppOptions = {
@@ -26,12 +30,17 @@ export type ExchangeWebFlowCodeGitHubAppOptions = {
   clientSecret: string;
   code: string;
   redirectUrl?: string;
+  oidcCompliant?: boolean;
   request?: RequestInterface;
 };
 
 export type ExchangeWebFlowCodeOAuthAppResponse =
   OctokitResponse<OAuthAppCreateTokenResponseData> & {
     authentication: OAuthAppAuthentication;
+  };
+export type ExchangeWebFlowCodeOAuthAppResponseOIDC =
+  OctokitResponse<OAuthAppCreateTokenResponseData> & {
+    authentication: OAuthAppAuthenticationOIDC;
   };
 export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
   | GitHubAppCreateTokenResponseData
@@ -42,6 +51,19 @@ export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
     | GitHubAppAuthenticationWithExpirationDisabled
     | GitHubAppAuthenticationWithRefreshToken;
 };
+export type ExchangeWebFlowCodeGitHubAppResponseOIDC = OctokitResponse<
+  | GitHubAppCreateTokenResponseData
+  | GitHubAppCreateTokenWithExpirationResponseData
+> & {
+  authentication: GitHubAppAuthenticationOIDC | GitHubAppAuthenticationWithRefreshTokenOIDC;
+};
+
+/**
+ * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
+ */
+export async function exchangeWebFlowCode(
+  options: ExchangeWebFlowCodeOAuthAppOptions & { oidcCompliant: true },
+): Promise<ExchangeWebFlowCodeOAuthAppResponseOIDC>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for OAuth Apps.
@@ -49,6 +71,13 @@ export type ExchangeWebFlowCodeGitHubAppResponse = OctokitResponse<
 export async function exchangeWebFlowCode(
   options: ExchangeWebFlowCodeOAuthAppOptions,
 ): Promise<ExchangeWebFlowCodeOAuthAppResponse>;
+
+/**
+ * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. Note that `scopes` are not supported by GitHub Apps.
+ */
+export async function exchangeWebFlowCode(
+  options: ExchangeWebFlowCodeGitHubAppOptions & { oidcCompliant: true },
+): Promise<ExchangeWebFlowCodeGitHubAppResponseOIDC>;
 
 /**
  * Exchange the code from GitHub's OAuth Web flow for GitHub Apps. Note that `scopes` are not supported by GitHub Apps.
@@ -75,6 +104,10 @@ export async function exchangeWebFlowCode(
       redirect_uri: options.redirectUrl,
     },
   );
+
+  if (options.oidcCompliant) {
+    return { ...response, authentication: response.data };
+  }
 
   const authentication: Record<string, unknown> = {
     clientType: options.clientType,
