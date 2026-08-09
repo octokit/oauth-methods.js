@@ -3,9 +3,13 @@ import { RequestError } from "@octokit/request-error";
 
 export function requestToOAuthBaseUrl(request: RequestInterface): string {
   const endpointDefaults = request.endpoint.DEFAULTS;
-  return /^https:\/\/(api\.)?github\.com$/.test(endpointDefaults.baseUrl)
-    ? "https://github.com"
-    : endpointDefaults.baseUrl.replace("/api/v3", "");
+  if (/^https:\/\/(api\.)?github\.com$/.test(endpointDefaults.baseUrl)) {
+    return "https://github.com";
+  }
+  if (/^https:\/\/api\..*\.ghe\.com$/.test(endpointDefaults.baseUrl)) {
+    return endpointDefaults.baseUrl.replace("api.", "");
+  }
+  return endpointDefaults.baseUrl.replace("/api/v3", "");
 }
 
 export async function oauthRequest(
