@@ -37,7 +37,7 @@ export async function refreshToken(
 
 export async function refreshToken(
   options: RefreshTokenOptions,
-): Promise<any> {
+): Promise<RefreshTokenResponse | RefreshTokenResponseOIDC> {
   /* v8 ignore next: we always pass a custom request in tests -- @preserve */
   const request = options.request || defaultRequest;
 

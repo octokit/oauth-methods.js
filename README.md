@@ -467,6 +467,17 @@ Options
     </tr>
     <tr>
       <th>
+        <code>oidcCompliant</code>
+      </th>
+      <th>
+        <code>boolean</code>
+      </th>
+      <td>
+        When set to <code>true</code>, the <code>authentication</code> object will contain the raw fields returned by GitHub's token endpoint (<code>access_token</code>, <code>token_type</code>, <code>scope</code>, etc.) instead of the library's camelCase-mapped fields. See <a href="#oidc-compliant-authentication">OIDC compliant authentication</a>.
+      </td>
+    </tr>
+    <tr>
+      <th>
         <code>request</code>
       </th>
       <th>
@@ -644,6 +655,17 @@ const { data, authentication } = await exchangeDeviceCode({
       </th>
       <td>
         <strong>Required</strong>. The <code>device_code</code> from the <code>createDeviceCode()</code> response
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>oidcCompliant</code>
+      </th>
+      <th>
+        <code>boolean</code>
+      </th>
+      <td>
+        When set to <code>true</code>, the <code>authentication</code> object will contain the raw fields returned by GitHub's token endpoint (<code>access_token</code>, <code>token_type</code>, <code>scope</code>, etc.) instead of the library's camelCase-mapped fields. See <a href="#oidc-compliant-authentication">OIDC compliant authentication</a>.
       </td>
     </tr>
     <tr>
@@ -849,6 +871,17 @@ Options
       </th>
       <td>
         <strong>Required</strong>. The refresh token that was received alongside the user access token.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>oidcCompliant</code>
+      </th>
+      <th>
+        <code>boolean</code>
+      </th>
+      <td>
+        When set to <code>true</code>, the <code>authentication</code> object will contain the raw fields returned by GitHub's token endpoint (<code>access_token</code>, <code>token_type</code>, <code>expires_in</code>, <code>refresh_token</code>, <code>refresh_token_expires_in</code>) instead of the library's camelCase-mapped fields. See <a href="#oidc-compliant-authentication">OIDC compliant authentication</a>.
       </td>
     </tr>
     <tr>
@@ -1354,6 +1387,8 @@ The differences are
 
 Note that the `clientSecret` may not be set when using [`exchangeDeviceCode()`](#exchangedevicecode) as `clientSecret` is not required for the OAuth device flow.
 
+When passing `oidcCompliant: true` to [`exchangeWebFlowCode()`](#exchangewebflowcode), [`exchangeDeviceCode()`](#exchangedevicecode), or [`refreshToken()`](#refreshtoken), the `authentication` object instead contains the [OIDC compliant authentication](#oidc-compliant-authentication) fields.
+
 ### OAuth APP authentication
 
 <table width="100%">
@@ -1552,6 +1587,94 @@ Note that the `clientSecret` may not be set when using [`exchangeDeviceCode()`](
       </th>
       <td>
         Date timestamp in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString">ISO 8601</a> standard. Example: <code>2021-07-01T00:00:0.000Z</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+### OIDC compliant authentication
+
+When `oidcCompliant: true` is passed to [`exchangeWebFlowCode()`](#exchangewebflowcode), [`exchangeDeviceCode()`](#exchangedevicecode), or [`refreshToken()`](#refreshtoken), the `authentication` object contains the raw fields returned by GitHub's token endpoint, conforming to [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693#section-2.2.1).
+
+<table width="100%">
+  <thead align=left>
+    <tr>
+      <th width=150>
+        name
+      </th>
+      <th width=70>
+        type
+      </th>
+      <th>
+        description
+      </th>
+    </tr>
+  </thead>
+  <tbody align=left valign=top>
+    <tr>
+      <th>
+        <code>access_token</code>
+      </th>
+      <th>
+        <code>string</code>
+      </th>
+      <td>
+        The user access token. The token starts with <code>ghu_</code>.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>token_type</code>
+      </th>
+      <th>
+        <code>string</code>
+      </th>
+      <td>
+        Always <code>"bearer"</code>.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>scope</code>
+      </th>
+      <th>
+        <code>string</code>
+      </th>
+      <td>
+        Space-separated list of scopes. Only present for OAuth Apps. GitHub Apps always return an empty string.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>expires_in</code>
+      </th>
+      <th>
+        <code>integer</code>
+      </th>
+      <td>
+        Number of seconds until <code>access_token</code> expires. Only present when token expiration is enabled. Always <code>28800</code> (8 hours).
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>refresh_token</code>
+      </th>
+      <th>
+        <code>string</code>
+      </th>
+      <td>
+        The refresh token. Only present when token expiration is enabled. The token starts with <code>ghr_</code>.
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <code>refresh_token_expires_in</code>
+      </th>
+      <th>
+        <code>integer</code>
+      </th>
+      <td>
+        Number of seconds until <code>refresh_token</code> expires. Only present when token expiration is enabled. Always <code>15897600</code> (6 months).
       </td>
     </tr>
   </tbody>
